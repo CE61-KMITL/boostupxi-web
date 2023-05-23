@@ -1,14 +1,24 @@
+<script lang="ts">
+	let src = '/process.jpg';
+</script>
+
 <div>
-	<main class="mx-auto p-6 max-w-60ch">
-		<h1 class="font-bold text-3xl">
-			Welcome to <span class="text-violet-600">BoostUp-XI Grader</span>
-		</h1>
-		<p class="mt-4">
-			This is a web application that can be used to grade the answer sheets of the students of class
-			XI. This application is developed by the students of class XII of Computer Engineering
-			Department of Kathmandu University for the partial fulfillment of the course Software
-			Engineering.
-		</p>
-		<p>Coming Soon...</p>
+	<main class="h-screen w-full flex flex-col justify-center items-center bg-[#1A2238]">
+		<img src={'/process.jpg'} class="h-32 w-32" alt="process" />
+		<h1 class="text-7xl font-extrabold text-white tracking-widest">Coming Soon</h1>
+		<button class="mt-5">
+			<a
+				class="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring"
+				href="/"
+			>
+				<span
+					class="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-[#FF6A3D] group-hover:translate-y-0 group-hover:translate-x-0"
+				/>
+
+				<span class="relative block px-8 py-3 bg-[#1A2238] border border-current">
+					<router-link to="/">Go Home</router-link>
+				</span>
+			</a>
+		</button>
 	</main>
 </div>
