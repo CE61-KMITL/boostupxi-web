@@ -14,14 +14,6 @@
 	});
 </script>
 
-<!-- {#if $user && (!$page.route || $page.route.id !== '/') && !initialLoad}
-	<Navbar />
-	<slot />
-{:else if (!$page.route || $page.route.id === '/' && !initialLoad}
-	<slot />
-{:else}
-	<Error />
-{/if} -->
 {#if $user && (!$page.route || $page.route.id !== '/') && !initialLoad}
 	<Navbar />
 	<slot />
