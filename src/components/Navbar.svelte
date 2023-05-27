@@ -52,7 +52,7 @@
 					? 'flex'
 					: 'hidden'}"
 			>
-				<a class="text-gray-800 hover:text-blue-400" href="/">Home</a>
+				<a class="text-gray-800 hover:text-blue-400" href="/question">Home</a>
 				{#if !$user}
 					<a class="text-gray-800 hover:text-blue-400" href="/login">Login</a>
 				{/if}

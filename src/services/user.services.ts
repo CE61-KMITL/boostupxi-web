@@ -8,13 +8,13 @@ export const userService = {
                 email, password
             });
             Cookies.set('token', response.headers.authorization);
-            window.location.href = '/';
+            window.location.href = '/question';
         } catch (error) {
             const message = (error as Error).message;
             throw new Error(message);
         }
     },
-    logout: async ()=> {
+    logout: async () => {
         try {
             Cookies.remove('token');
             window.location.href = '/';
@@ -24,7 +24,7 @@ export const userService = {
             throw new Error(message);
         }
     },
-    getUserProfile: async ()=> {
+    getUserProfile: async () => {
         const token: string | undefined = Cookies.get("token");
         if (token) {
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
