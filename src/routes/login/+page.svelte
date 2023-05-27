@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { loginService } from '../../services/user.services';
+	import {userService} from '../../services/user.services';
 
 	let email: string = '';
 	let password: string = '';
 
 	$: submit = async () => {
 		try {
-			await loginService(email, password);
+			await userService.login(email, password);
 		} catch (error) {
-			return error;
+			console.log(error);
 		}
 	};
 </script>

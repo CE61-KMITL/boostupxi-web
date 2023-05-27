@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { userService } from '../services/user.services';
 	import { user } from '../store/user';
-	import { logoutService } from '../services/user.services';
 
 	let showMenu: boolean = false;
 
@@ -10,7 +10,7 @@
 
 	const logout = async () => {
 		try {
-			await logoutService();
+			await userService.logout();
 		} catch (error) {
 			return error;
 		}
@@ -53,11 +53,11 @@
 					: 'hidden'}"
 			>
 				<a class="text-gray-800 hover:text-blue-400" href="/">Home</a>
-				<a class="text-gray-800 hover:text-blue-400" href="/">About Us</a>
 				{#if !$user}
 					<a class="text-gray-800 hover:text-blue-400" href="/login">Login</a>
 				{/if}
 				{#if $user}
+					<a class="text-gray-800 hover:text-blue-400" href="/leaderboard">Leaderboard</a>
 					<a class="text-gray-800 hover:text-blue-400" href="/">{$user.username}</a>
 					<button class="text-gray-800 hover:text-blue-400" on:click={logout}>Logout</button>
 				{/if}

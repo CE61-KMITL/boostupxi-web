@@ -1,6 +1,6 @@
 import { writable, type Writable } from "svelte/store";
 import type { IUser } from "../interface/user";
-import { getUserProfileService } from "../services/user.services";
+import { userService } from "../services/user.services";
 
 export const user: Writable<IUser> = writable({
     email: "",
@@ -11,7 +11,7 @@ export const user: Writable<IUser> = writable({
 });
 
 export const updateUserProfile = async (): Promise<void> => {
-    const profileData = await getUserProfileService();
+    const profileData = await userService.getUserProfile();
     user.set(profileData);
 };
 
