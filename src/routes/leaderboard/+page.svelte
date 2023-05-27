@@ -40,7 +40,7 @@
 
 <section class="relative mx-auto my-12 mb-20">
 	<div class="px-5 lg:px-0">
-		<div class="container mx-auto my-3 pb-20 grid grid-cols-3 gap-3">
+		<div class="container mx-auto my-4 pb-20 grid md:grid-cols-2 lg:grid-cols-3 justify-center gap-3">
 			{#each [1, 0, 2] as i}
 				{#each leaderboardGroupData.slice(0, 3) as item, index}
 					{#if index === i}
@@ -98,8 +98,8 @@
 							class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
 							class:selected={index + 1 === page}
 							class:text-blue-900={index + 1 === page}
-							class:bg-blue-100={index + 1 === page}
-							class:hover:bg-blue-100={index + 1 === page}
+							class:bg-blue-200={index + 1 === page}
+							class:hover:bg-blue-300={index + 1 === page}
 							class:hover:text-blue-700={index + 1 === page}
 							on:click={() => goToPage(index + 1)}
 						>

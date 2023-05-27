@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:border-gray-700 cursor-pointer"
+	class=" max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:border-gray-700 cursor-pointer"
 >
 	{#each Array(level) as _, i}
 		<svg

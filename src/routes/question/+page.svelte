@@ -25,7 +25,9 @@
 	};
 </script>
 
-<div class="container mx-auto my-4 grid grid-cols-4 gap-4">
+<div
+	class="container mx-auto my-4 grid md:grid-cols-2 lg:grid-cols-4 justify-center gap-4"
+>
 	{#each questionData as item}
 		<Card
 			title={item.title}
@@ -64,8 +66,8 @@
 					class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
 					class:selected={index + 1 === page}
 					class:text-blue-900={index + 1 === page}
-					class:bg-blue-100={index + 1 === page}
-					class:hover:bg-blue-200={index + 1 === page}
+					class:bg-blue-200={index + 1 === page}
+					class:hover:bg-blue-300={index + 1 === page}
 					class:hover:text-blue-700={index + 1 === page}
 					on:click={() => goToPage(index + 1)}
 				>
