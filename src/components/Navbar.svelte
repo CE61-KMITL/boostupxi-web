@@ -21,7 +21,7 @@
 	<div>
 		<nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center">
 			<div class="flex items-center justify-between">
-				<a class="text-xl font-bold text-gray-800 md:text-2xl hover:text-blue-400" href="/"
+				<a class="text-xl font-bold text-gray-800 md:text-2xl hover:text-blue-400" href="/question"
 					>CE BoostUp-XI Grader
 				</a>
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -58,7 +58,7 @@
 				{/if}
 				{#if $user}
 					<a class="text-gray-800 hover:text-blue-400" href="/leaderboard">Leaderboard</a>
-					<a class="text-gray-800 hover:text-blue-400" href="/">{$user.username}</a>
+					<a class="text-gray-800 hover:text-blue-400" href="/question">Profile</a>
 					<button class="text-gray-800 hover:text-blue-400" on:click={logout}>Logout</button>
 				{/if}
 			</div>
