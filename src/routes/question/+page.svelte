@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Card from '../../components/Card.svelte';
+	import Loading from '../../components/Loading.svelte';
 	import type { IQuestionData } from '../../interface/question';
 	import { fetchQuestionData, questionDataStore, questionPage } from '../../store/question';
 
@@ -26,15 +27,19 @@
 </script>
 
 <div class="container mx-auto my-4 grid md:grid-cols-2 lg:grid-cols-4 justify-center gap-4">
-	{#each questionData as item}
-		<Card
-			id={item._id}
-			title={item.title}
-			description={item.description}
-			level={item.level}
-			author={item.author.username}
-		/>
-	{/each}
+	{#if questionData.length > 0}
+		{#each questionData as item}
+			<Card
+				id={item._id}
+				title={item.title}
+				description={item.description}
+				level={item.level}
+				author={item.author.username}
+			/>
+		{/each}
+	{:else}
+		<Loading />
+	{/if}
 </div>
 
 <nav class="inline-flex justify-end container mx-auto">
