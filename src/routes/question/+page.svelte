@@ -25,11 +25,10 @@
 	};
 </script>
 
-<div
-	class="container mx-auto my-4 grid md:grid-cols-2 lg:grid-cols-4 justify-center gap-4"
->
+<div class="container mx-auto my-4 grid md:grid-cols-2 lg:grid-cols-4 justify-center gap-4">
 	{#each questionData as item}
 		<Card
+			id={item._id}
 			title={item.title}
 			description={item.description}
 			level={item.level}

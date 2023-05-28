@@ -5,14 +5,14 @@ export interface IQuestion {
 }
 
 export interface IQuestionData {
-    id: string;
+    _id: string;
     title: string;
     description: string;
     author: IAuthor;
     level: number;
     tags: string[];
     files: IFiles[];
-    testCases: ITestCases[];
+    testcases: ITestCases[];
     createdAt: string;
     updatedAt: string;
 }
