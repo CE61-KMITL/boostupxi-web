@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	import { writable } from 'svelte/store';
+	import Editor from '../../../components/Editor.svelte';
 	import Loading from '../../../components/Loading.svelte';
 	import type { IQuestionData } from '../../../interface/question';
 	import { questionService } from '../../../services/question.services';
@@ -103,11 +105,9 @@
 						{/each}
 					</div>
 				</div>
-				<img
-					alt="text-editor"
-					class="w-full object-cover object-center rounded border border-gray-200"
-					src="https://user-images.githubusercontent.com/3920290/81471642-6c165880-91ea-11ea-8cd1-fae7ae8f0bc4.png"
-				/>
+				<div class="flex container mx-auto">
+					<Editor id={question._id} />
+				</div>
 			</div>
 		</div>
 	</section>
