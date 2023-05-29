@@ -25,7 +25,7 @@
 		<a
 			rel="noopener noreferrer"
 			href="/"
-			class="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"
+			class="px-8 py-3 font-semibold rounded"
 			>Back to homepage</a
 		>
 	</div>
