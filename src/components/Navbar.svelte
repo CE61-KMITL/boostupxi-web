@@ -58,6 +58,7 @@
 				{/if}
 				{#if $user}
 					<a class="text-gray-800 hover:text-blue-400" href="/leaderboard">Leaderboard</a>
+					<a class="text-gray-800 hover:text-blue-400" href="/guide">Guide</a>
 					<a class="text-gray-800 hover:text-blue-400" href="/profile">Profile</a>
 					<button class="text-gray-800 hover:text-blue-400" on:click={logout}>Logout</button>
 				{/if}
