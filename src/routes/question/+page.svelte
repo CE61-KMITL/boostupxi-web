@@ -26,8 +26,8 @@
 	};
 </script>
 
-<div class="w-full justify-center flex">
-	<div class="my-4 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="w-full justify-center flex mb-10">
+	<div class="my-5 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
 		{#if questionData.length > 0}
 			{#each questionData as item}
 				<Card
@@ -81,7 +81,7 @@
 				</button>
 			</li>
 		{/each}
-		<li>
+		<li class="">
 			<button
 				class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700"
 				on:click={() => goToPage(page + 1)}

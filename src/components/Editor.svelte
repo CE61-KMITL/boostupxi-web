@@ -113,16 +113,13 @@
 	});
 </script>
 
-<div>
-	<div
-		bind:this={divEl}
-		class="flex container w-[550px] sm:w-[600px] md:w-[700px] lg:w-[800px] xl:w-[1000px] 2xl:w-[1200px] h-[350px]"
-	/>
-	<div class=" flex justify-end">
-		<button
-			type="button"
-			class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 mt-4"
-			on:click={handleButtonClick}>Submit</button
+<div
+	class="w-[550px] sm:w-[600px] md:w-[700px] lg:w-[800px] xl:w-[1000px] 2xl:w-[50rem] h-full flex flex-col"
+>
+	<div bind:this={divEl} class="flex container w-full h-[33rem]" />
+	<div class="w-full h-[4rem]">
+		<button type="button" class="w-full text-white rgb-button mt-5" on:click={handleButtonClick}
+			>Submit</button
 		>
 	</div>
 </div>

@@ -21,7 +21,10 @@
 	<div>
 		<nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center text-white">
 			<div class="flex items-center justify-between">
-				<a class="text-xl font-bold md:text-2xl hover:text-blue-400" href="/question"
+				<a
+					class="text-xl font-bold md:text-3xl"
+					style="text-shadow: 2px 2px 1px black;"
+					href="/question"
 					>CE BoostUp-XI Grader
 				</a>
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -45,7 +48,7 @@
 				</div>
 			</div>
 			<div
-				class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0 {showMenu
+				class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0 text-lg {showMenu
 					? 'flex'
 					: 'hidden'}"
 			>
