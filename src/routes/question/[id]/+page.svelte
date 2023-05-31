@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
 	import Editor from '../../../components/Editor.svelte';
 	import Loading from '../../../components/Loading.svelte';
 	import type { IQuestionData } from '../../../interface/question';

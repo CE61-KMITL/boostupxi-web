@@ -7,7 +7,6 @@
 	const toggleNavbar = () => {
 		showMenu = !showMenu;
 	};
-
 	const logout = async () => {
 		try {
 			await userService.logout();
@@ -55,6 +54,7 @@
 				{/if}
 				{#if $user}
 					<a class="hover:text-blue-400" href="/leaderboard">Leaderboard</a>
+					<a class="hover:text-blue-400" href="/guide">Guide</a>
 					<a class="hover:text-blue-400" href="/profile">Profile</a>
 					<button class="hover:text-blue-400" on:click={logout}>Logout</button>
 				{/if}
