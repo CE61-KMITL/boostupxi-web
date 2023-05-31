@@ -8,7 +8,9 @@ export const userService = {
                 email, password
             });
             Cookies.set('token', response.headers.authorization);
-            window.location.href = '/question';
+            setTimeout(() => {
+                window.location.href = '/question';
+            }, 1000);
         } catch (error) {
             const message = (error as Error).message;
             throw new Error(message);
@@ -17,8 +19,9 @@ export const userService = {
     logout: async () => {
         try {
             Cookies.remove('token');
-            window.location.href = '/';
-            return;
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1000)
         } catch (error) {
             const message = (error as Error).message;
             throw new Error(message);

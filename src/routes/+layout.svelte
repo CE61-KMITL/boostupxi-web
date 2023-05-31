@@ -1,19 +1,22 @@
 <script async script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	import { Toaster } from 'svelte-french-toast';
 	import '../app.css';
 	import Error from '../components/Error.svelte';
 	import Loading from '../components/Loading.svelte';
 	import Navbar from '../components/Navbar.svelte';
 	import { user } from '../store/user';
 
-	let initialLoad = true;
+	let initialLoad: boolean = true;
 
-	onMount(() => {
+	const loading = () => {
 		initialLoad = false;
-	});
+	};
+	onMount(loading);
 </script>
 
+<Toaster />
 {#if $user && (!$page.route || $page.route.id !== '/') && !initialLoad}
 	<Navbar />
 	<slot />
