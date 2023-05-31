@@ -13,7 +13,8 @@
 				error: 'Login Failed!'
 			});
 		} catch (error) {
-			console.log(error);
+			const message = (error as Error).message;
+			throw new Error(message);
 		}
 	};
 </script>
@@ -77,7 +78,7 @@
 								</svg>
 							</div>
 							<input
-								type="text"
+								type="password"
 								class="w-full -ml-10 pl-12 text-gray-500 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-[#ff8686]"
 								placeholder="••••••••"
 								bind:value={password}

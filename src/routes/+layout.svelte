@@ -10,9 +10,10 @@
 
 	let initialLoad: boolean = true;
 
-	onMount(() => {
+	const loading = () => {
 		initialLoad = false;
-	});
+	};
+	onMount(loading);
 </script>
 
 <Toaster />

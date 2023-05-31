@@ -9,9 +9,12 @@
 	let question: IQuestionData;
 	const id: string = $page.params.id;
 
-	onMount(async () => {
+
+	const fetchQuestionById = async () => {
 		question = await questionService.getQuestionById(id);
-	});
+	};
+
+	onMount(fetchQuestionById);
 </script>
 
 {#if question?.title}

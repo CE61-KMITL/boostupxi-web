@@ -6,13 +6,13 @@ export const leaderboardDataStore: Writable<ILeaderboardData[]> = writable<ILead
 export const leaderboardGroupDataStore: Writable<ILeaderboardGroup[]> = writable<ILeaderboardGroup[]>([]);
 export const leaderboardPage: Writable<number> = writable<number>(0);
 
-export async function fetchLeaderboardData(page: number) {
+export const fetchLeaderboardData = async (page: number) => {
     const response = await leaderboardService.getLeaderboard(page);
     leaderboardDataStore.set(response.data);
     leaderboardPage.set(response.pages);
 }
 
-export async function fetchLeaderboardGroupData() {
+export const fetchLeaderboardGroupData = async () => {
     const response = await leaderboardService.getLeaderboardGroup();
     leaderboardGroupDataStore.set(response);
 }
