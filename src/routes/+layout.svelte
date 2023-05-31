@@ -1,6 +1,7 @@
 <script async script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	import { Toaster } from 'svelte-french-toast';
 	import '../app.css';
 	import Error from '../components/Error.svelte';
 	import Loading from '../components/Loading.svelte';
@@ -14,6 +15,7 @@
 	});
 </script>
 
+<Toaster />
 {#if $user && (!$page.route || $page.route.id !== '/') && !initialLoad}
 	<Navbar />
 	<slot />

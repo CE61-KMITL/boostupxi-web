@@ -1,4 +1,5 @@
 <script lang="ts">
+	import toast from 'svelte-french-toast';
 	import { userService } from '../services/user.services';
 	import { user } from '../store/user';
 
@@ -9,7 +10,11 @@
 	};
 	const logout = async () => {
 		try {
-			await userService.logout();
+			toast.promise(userService.logout(), {
+				loading: 'Loading...',
+				success: 'Logout Success!',
+				error: 'Logout Failed!'
+			});
 		} catch (error) {
 			return error;
 		}
