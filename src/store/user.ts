@@ -2,12 +2,16 @@ import { writable, type Writable } from "svelte/store";
 import type { IUser } from "../interface/user";
 import { userService } from "../services/user.services";
 
-export const initialUser = {
+export const initialUser: IUser = {
     email: "",
     username: "",
     score: 0,
     role: "",
-    tasks: []
+    tasks: [],
+    _id: "",
+    group: "",
+    createdAt: "",
+    updatedAt: ""
 }
 
 export const user: Writable<IUser> = writable(initialUser);

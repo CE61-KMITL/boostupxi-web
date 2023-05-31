@@ -7,7 +7,7 @@
 	import Navbar from '../components/Navbar.svelte';
 	import { user } from '../store/user';
 
-	let initialLoad = true;
+	let initialLoad: boolean = true;
 
 	onMount(() => {
 		initialLoad = false;
