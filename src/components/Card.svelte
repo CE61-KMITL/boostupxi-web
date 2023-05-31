@@ -2,7 +2,7 @@
 	export let id: string, title: string, description: string, level: number, author: string;
 </script>
 
-<div class="w-[20rem] p-6 mx-5 glass border border-gray-200 rounded-lg text-white cursor-pointer">
+<div class="w-[23rem] p-6 glass border border-gray-200 rounded-lg text-white cursor-pointer">
 	<a href={`/question/${id}`}>
 		{#each Array(level) as _, i}
 			<div class="w-full flex justify-end">

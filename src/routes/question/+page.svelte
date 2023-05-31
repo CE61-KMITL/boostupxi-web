@@ -20,8 +20,8 @@
 	}
 </script>
 
-<div class="w-full justify-center flex">
-	<div class="my-4 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="w-full justify-center flex mb-10">
+	<div class="my-5 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
 		{#if questionData.length > 0}
 			{#each questionData as item}
 				<Card
