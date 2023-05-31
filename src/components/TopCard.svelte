@@ -2,8 +2,6 @@
 	export let score: number;
 	export let rank: number;
 	export let group: string;
-
-	console.log(score);
 </script>
 
 <div class="block max-w-sm p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
