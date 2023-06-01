@@ -2,6 +2,7 @@
 	import type * as Monaco from 'monaco-editor';
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 	import { afterUpdate, onMount } from 'svelte';
+	import toast from 'svelte-french-toast';
 
 	let subscriptions: ((text: string) => void)[] = [];
 	let content: {
@@ -22,6 +23,7 @@
 		const text = editor.getValue();
 		console.log('Question : ID', id);
 		console.log('Editor Value : ', text);
+		toast.success('Submitted Successfully');
 	};
 
 	onMount(async () => {
