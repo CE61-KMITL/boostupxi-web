@@ -14,8 +14,8 @@
 
 	let leaderboardData: ILeaderboardData[] = [];
 	let leaderboardGroupData: ILeaderboardGroup[] = [];
-	let page = 1;
-	let totalPages = 0;
+	let page: number = 1;
+	let totalPages: number = 0;
 
 	const fetchLeaderboard = async () => {
 		await fetchLeaderboardData(page);
@@ -70,7 +70,6 @@
 					</div>
 				{/each}
 			</div>
-			<!-- Pagination -->
 			<Pagination page={1} {totalPages} />
 		</div>
 	</section>

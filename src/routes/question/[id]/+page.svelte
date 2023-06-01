@@ -10,13 +10,15 @@
 	let hint = false;
 	const id: string = $page.params.id;
 
-	onMount(async () => {
+	const fetchQuestionById = async () => {
 		question = await questionService.getQuestionById(id);
-	});
+	};
 
 	const handleHint = () => {
 		hint = true;
 	};
+
+	onMount(fetchQuestionById);
 </script>
 
 {#if question?.title}
