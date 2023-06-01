@@ -19,12 +19,10 @@
 
 	const fetchLeaderboard = async () => {
 		await fetchLeaderboardData(page);
-		console.log(leaderboardData);
 	};
 
 	const fetchLeaderboardGroup = async () => {
 		await fetchLeaderboardGroupData();
-		console.log(leaderboardGroupData);
 	};
 
 	onMount(fetchLeaderboard);
@@ -50,7 +48,6 @@
 				{/each}
 			</div>
 			<div class="overflow-auto w-full lg:w-2/3">
-				<!-- Your current rank -->
 				<div
 					class="py-4 px-1 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl m-4 glass-gray"
 				>
