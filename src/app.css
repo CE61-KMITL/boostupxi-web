@@ -21,9 +21,15 @@
 /* gradient animation bg */
 .gradient-animation {
 	background: linear-gradient(135deg, #e90924, #e23480, #9a35b8, #0c68ac, #2aac6e, #eadf2b);
-	background-size: 400% 400%;
+	background-size: 400% 530%;
 	animation: gradient 8s ease infinite;
 	height: 100vh;
+}
+
+@media only screen and (min-width: 768px) {
+  .gradient-animation {
+    background-size: 400% 400%;
+  }
 }
 
 @keyframes gradient {
@@ -88,7 +94,8 @@
 
 /* scroll bar */
 .scrollable::-webkit-scrollbar {
-	width: 0.8rem;
+	width: 0.7rem;
+  
 }
 .scrollable::-webkit-scrollbar-thumb {
 	background: #aeaeae;
@@ -96,6 +103,10 @@
   
 .scrollable::-webkit-scrollbar-thumb:hover {
 	background: #8f8f8f;
+}
+
+.scrollable::-webkit-scrollbar-track {
+	background-color: transparent;
 }
 
 /* RGB button */

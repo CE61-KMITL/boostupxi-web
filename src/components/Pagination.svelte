@@ -17,7 +17,7 @@
 	};
 </script>
 
-<div class="absolute right-16">
+<div class="w-11/12 justify-end flex">
 	<nav class="inline-flex justify-end mt-10 mb-20">
 		<ul class="inline-flex items-center -space-x-px">
 			<li>
