@@ -7,11 +7,16 @@
 	import { questionService } from '../../../services/question.services';
 
 	let question: IQuestionData;
+	let hint = false;
 	const id: string = $page.params.id;
 
 	onMount(async () => {
 		question = await questionService.getQuestionById(id);
 	});
+
+	const handleHint = () => {
+		hint = true;
+	};
 </script>
 
 {#if question?.title}
@@ -20,7 +25,7 @@
 			<div class="flex max-h-full">
 				<Editor id={question._id} />
 				<div class="w-1/2 lg:pl-10 lg:py-6 mt-6 lg:mt-0 max-h-full overflow-auto scrollable">
-					<div class="w-full flex justify-between">
+					<div class="w-11/12 flex justify-between">
 						{#each Array(question?.level) as _, i}
 							<svg
 								aria-hidden="true"
@@ -37,7 +42,7 @@
 						{/each}
 						<h1 class="text-3xl title-font font-medium mb-1">{question?.title}</h1>
 					</div>
-					<div class="w-full flex justify-between">
+					<div class="w-11/12 flex justify-between">
 						<h2 class="text-sm title-font tracking-widest">
 							by {question?.author.username}
 						</h2>
@@ -45,7 +50,7 @@
 							{question?.description}
 						</p>
 					</div>
-					<div class="flex mt-6 items-center mb-4">
+					<div class="flex mt-6 items-center mb-4 w-11/12">
 						<div class="flex">
 							<span class="mr-3">Tags</span>
 							{#each question?.tags ?? [] as tag}
@@ -72,18 +77,26 @@
 						</div>
 					</div>
 					<h1>hint</h1>
-					<button
-						type="button"
-						class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 mt-4"
-						>Buy hint</button
-					>
+					{#if hint}
+						<div class="glass w-11/12 p-2 my-2">
+							<p class="leading-relaxed">
+								{question?.description}
+							</p>
+						</div>
+					{:else}
+						<button
+							type="button"
+							class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 mt-4"
+							on:click={handleHint}>Buy hint</button
+						>
+					{/if}
 					<h1>description</h1>
-					<div class="glass w-full p-2 my-2">
+					<div class="glass w-11/12 p-2 my-2">
 						<p class="leading-relaxed">
 							{question?.description}
 						</p>
 					</div>
-					<div class="text-white flex flex-col w-full">
+					<div class="text-white flex flex-col w-11/12">
 						{#each question?.testcases ?? [] as testcases, index}
 							{#if testcases.published}
 								<h2>TestCase {index + 1}</h2>

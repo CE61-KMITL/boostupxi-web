@@ -61,7 +61,7 @@
 		});
 
 		editor = Monaco.editor.create(divEl, {
-			value: '/* Loading... */',
+			value: '#include <stdio.h>\n\nint main() {\n\n\treturn 0;\n}',
 			language: 'c',
 			theme: 'vs-dark',
 			lineNumbers: 'on',
