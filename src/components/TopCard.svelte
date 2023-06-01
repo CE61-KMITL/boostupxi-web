@@ -7,16 +7,14 @@
 <div>
 	<div class="flex flex-col items-center mt-4 text-white w-full h-full">
 		<div
-			class="w-28 h-28 relative overflow-hidden lg:w-56 lg:h-56"
-			class:lg:w-80={rank === 1}
-			class:lg:h-80={rank === 1}
-			class:w-44={rank === 1}
-			class:h-44={rank === 1}
+			class={`${
+				rank === 1 ? 'w-44 h-44 lg:w-80 lg:h-80' : 'w-28 h-28 lg:w-56 lg:h-56'
+			} relative overflow-hidden`}
 		>
 			<div
-				class="absolute left-1/2 transform -translate-x-1/2 bottom-2 lg:bottom-[1.7rem] font-medium z-10"
-				class:lg:bottom-[2.7rem]={rank === 1}
-				class:bottom-5={rank === 1}
+				class={`absolute left-1/2 transform -translate-x-1/2 ${
+					rank === 1 ? 'lg:bottom-[2.7rem] bottom-5' : 'bottom-2 lg:bottom-[1.7rem]'
+				} font-medium z-10`}
 			>
 				<p
 					class="text-white text-center bg-red-500 rounded-full w-6 h-6 flex items-center justify-center"
@@ -31,9 +29,8 @@
 			/>
 			<img
 				src={`/paint-splash-01.svg`}
-				class="absolute -z-10 h-full w-full"
-				class:hidden={rank !== 1}
-				alt="john-doe"
+				class={`${rank !== 1 && 'hidden'} absolute -z-10 h-full w-full`}
+				alt="paing-splash"
 			/>
 		</div>
 		<h2 class="text-center md:text-lg text-xs">{group}</h2>

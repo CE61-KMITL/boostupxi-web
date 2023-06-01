@@ -1,19 +1,25 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fetchLeaderboardData } from '../store/leaderboard';
 	import { fetchQuestionData } from '../store/question';
 
 	export let page: number;
 	export let totalPages: number;
+	export let fetchBy: string;
 
-	const fetchQuestions = async () => {
-		await fetchQuestionData(page);
+	const fetchData = async () => {
+		if (fetchBy === 'question') {
+			await fetchQuestionData(page);
+		} else if (fetchBy === 'leaderboard') {
+			await fetchLeaderboardData(page);
+		}
 	};
 
-	onMount(fetchQuestions);
+	onMount(fetchData);
 
 	const goToPage = (newPage: number) => {
 		page = newPage;
-		fetchQuestions();
+		fetchData();
 	};
 </script>
 

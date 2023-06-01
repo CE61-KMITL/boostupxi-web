@@ -38,4 +38,4 @@
 	</div>
 </div>
 
-<Pagination page={1} {totalPages} />
+<Pagination page={1} {totalPages} fetchBy="question" />

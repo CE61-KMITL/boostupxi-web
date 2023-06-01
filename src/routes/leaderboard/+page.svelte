@@ -70,7 +70,7 @@
 					</div>
 				{/each}
 			</div>
-			<Pagination page={1} {totalPages} />
+			<Pagination page={1} {totalPages} fetchBy="leaderboard" />
 		</div>
 	</section>
 {:else}
