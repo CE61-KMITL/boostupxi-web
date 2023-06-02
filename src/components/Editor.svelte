@@ -3,6 +3,8 @@
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 	import { afterUpdate, onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
+	import { compilerService } from '../services/compiler.services';
+	import { questionService } from '../services/question.services';
 
 	let subscriptions: ((text: string) => void)[] = [];
 	let content: {
@@ -12,21 +14,30 @@
 	let divEl: HTMLDivElement;
 	let editor: Monaco.editor.IStandaloneCodeEditor;
 	let Monaco;
-
 	export let id: string;
 
 	const resizeEditor = () => {
 		editor.layout();
 	};
 
-	const handleButtonClick = () => {
+	const handleSubmit = async () => {
 		const text = editor.getValue();
-		console.log('Question : ID', id);
-		console.log('Editor Value : ', text);
-		toast.success('Submitted Successfully');
+		await compilerService.submitCode(text, id);
+		setTimeout(async () => {
+			const response = await questionService.getSubmission(id);
+			console.log(response)
+			if (response && response.status) {
+				setTimeout(() => {
+					window.location.reload();
+				}, 800);
+				toast.success('ยินดีด้วยน้องผ่านแล้ว เก่งมากๆๆ');
+			} else if (response && !response.status) {
+				toast.error('ยังถูกไม่หมดน้า ลองใหม่ๆๆ');
+			}
+		}, 4000);
 	};
 
-	onMount(async () => {
+	$: onMount(async () => {
 		self.MonacoEnvironment = {
 			getWorker: function (_moduleId, label) {
 				return new editorWorker();
@@ -63,7 +74,8 @@
 		});
 
 		editor = Monaco.editor.create(divEl, {
-			value: '#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}',
+			value:
+				'#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}',
 			language: 'c',
 			theme: 'vs-dark',
 			lineNumbers: 'on',
@@ -120,7 +132,7 @@
 >
 	<div bind:this={divEl} class="flex container w-full h-[33rem]" />
 	<div class="w-full h-[4rem]">
-		<button type="button" class="w-full text-white rgb-button mt-5" on:click={handleButtonClick}
+		<button type="button" class="w-full text-white rgb-button mt-5" on:click={handleSubmit}
 			>Submit</button
 		>
 	</div>

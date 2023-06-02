@@ -66,7 +66,6 @@
 					<a class="hover:text-blue-400" href="/leaderboard">Leaderboard</a>
 					<a class="hover:text-blue-400" href="/guide">Guide</a>
 					<a class="hover:text-blue-400" href="/profile">Profile</a>
-					<a class="hover:text-blue-400" href="/profile">Score : {$user.score}</a>
 					<button class="hover:text-blue-400" on:click={logout}>Logout</button>
 				{/if}
 			</div>

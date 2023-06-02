@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
 	import Editor from '../../../components/Editor.svelte';
 	import Loading from '../../../components/Loading.svelte';
@@ -16,13 +16,12 @@
 
 	const buyingHint = async () => {
 		const response = await questionService.buyingHint(id);
-		console.log(response);
 		if (response.status === 200) {
 			toast.success('Hint Purchased Successfully');
 			setTimeout(() => {
 				window.location.reload();
 			}, 800);
-		}else {
+		} else {
 			toast.error('Not Enough Score');
 		}
 	};
