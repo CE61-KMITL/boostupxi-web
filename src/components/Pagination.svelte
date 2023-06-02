@@ -18,13 +18,13 @@
 </script>
 
 <div class="w-11/12 justify-end flex">
-	<nav class="inline-flex justify-end mt-10 mb-20">
+	<nav class="inline-flex justify-end mt-10 mb-20 bg-[#303030] rounded-xl">
 		<ul class="inline-flex items-center -space-x-px">
 			<li>
 				<button
 					class={`block px-3 py-2 ml-0 leading-tight ${
 						page === 1 ? 'text-gray-500' : 'text-gray-800'
-					} bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700`}
+					} rounded-l-lg hover:bg-gray-100 hover:text-gray-700`}
 					on:click={() => goToPage(page - 1)}
 					disabled={page === 1}
 				>
@@ -46,8 +46,10 @@
 				<li>
 					<button
 						class={`px-3 py-2 leading-tight ${
-							page === index + 1 ? 'bg-blue-500 text-white' : 'bg-white text-gray-500'
-						} border border-gray-300 hover:bg-gray-100 hover:text-gray-700`}
+							page === index + 1
+								? 'bg-blue-500 text-white'
+								: 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+						} rounded-xl `}
 						on:click={() => goToPage(index + 1)}
 					>
 						{index + 1}
@@ -58,7 +60,7 @@
 				<button
 					class={`block px-3 py-2 leading-tight ${
 						page === totalPages ? 'text-gray-500' : 'text-gray-800'
-					} bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700`}
+					} rounded-r-lg hover:bg-gray-100 hover:text-gray-700`}
 					on:click={() => goToPage(page + 1)}
 					disabled={page === totalPages}
 				>

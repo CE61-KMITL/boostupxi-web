@@ -5,7 +5,7 @@
 </script>
 
 <div>
-	<div class="flex flex-col items-center mt-4 text-white w-full h-full">
+	<div class="flex flex-col items-center mt-4 text-white w-full h-full mb-5">
 		<div
 			class="w-28 h-28 relative overflow-hidden lg:w-56 lg:h-56"
 			class:lg:w-80={rank === 1}

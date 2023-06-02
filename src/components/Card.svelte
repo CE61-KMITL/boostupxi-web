@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let id: string, title: string, description: string, level: number, author: string;
+	export let id: string, title: string, level: number, author: string;
 </script>
 
 <div class="w-[23rem] p-6 glass border border-gray-200 rounded-lg text-white cursor-pointer">
@@ -28,9 +28,10 @@
 			<p class="inline-flex items-center hover:underline">
 				by {author}
 			</p>
-			<p class="font-normal">
-				{description}
-			</p>
+			<div class="flex px-4 py-2 text-center items-center bg-[#2AAC6E] rounded-xl mx-2 border">
+				<span class="text-xl font-bold block tracking-wide mr-2"> 10 </span>
+				<span class="text-base">Passed</span>
+			</div>
 		</div>
 	</a>
 </div>

@@ -52,7 +52,7 @@
 			<div class="overflow-auto w-full lg:w-2/3">
 				<!-- Your current rank -->
 				<div
-					class="py-4 px-1 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl m-4 glass-gray"
+					class="flip px-1 py-4 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl glass-gray m-4"
 				>
 					<p class="w-4 md:w-8 text-center">23</p>
 					<p class="w-32 md:w-72">Your currently Rank</p>
@@ -61,7 +61,8 @@
 				</div>
 				{#each leaderboardData as item, index (item.username)}
 					<div
-						class="py-4 px-1 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl m-4"
+						class="flip py-4 px-1 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl m-4"
+						style={`--i:${index + 1}`}
 					>
 						<p class="w-4 md:w-8 text-center">{index + 1}</p>
 						<p class="w-32 md:w-72">{item.username}</p>
