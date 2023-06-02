@@ -2,8 +2,8 @@
 	export let id: string, title: string, description: string, level: number, author: string;
 </script>
 
-<div class="w-[23rem] p-6 glass border border-gray-200 rounded-lg text-white cursor-pointer">
-	<a href={`/question/${id}`}>
+<a href={`/question/${id}`}>
+	<div class="w-[23rem] p-6 glass border border-gray-200 rounded-lg text-white cursor-pointer">
 		{#each Array(level) as _, i}
 			<div class="w-full flex justify-end">
 				<svg
@@ -19,11 +19,9 @@
 				</svg>
 			</div>
 		{/each}
-		<a href={`/question/${id}`}>
-			<h5 class="mb-2 text-3xl font-semibold tracking-tight">
-				{title}
-			</h5>
-		</a>
+		<h5 class="mb-2 text-3xl font-semibold tracking-tight">
+			{title}
+		</h5>
 		<div class="w-full flex justify-between my-2 mt-6">
 			<p class="inline-flex items-center hover:underline">
 				by {author}
@@ -32,5 +30,5 @@
 				{description}
 			</p>
 		</div>
-	</a>
-</div>
+	</div>
+</a>

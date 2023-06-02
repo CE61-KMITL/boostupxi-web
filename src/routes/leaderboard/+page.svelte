@@ -36,11 +36,9 @@
 </script>
 
 {#if leaderboardData.length > 0}
-	<section class="relative mx-auto my-12 mb-20">
-		<div class="px-5 lg:px-0">
-			<div
-				class="container mx-auto my-4 pb-20 grid md:grid-cols-2 lg:grid-cols-3 justify-center gap-3"
-			>
+	<section class="mx-auto mb-20">
+		<div class="px-0 md:px-5 flex flex-col items-center">
+			<div class="pb-5 grid grid-cols-3 items-center w-full lg:w-auto">
 				{#each [1, 0, 2] as i}
 					{#each leaderboardGroupData.slice(0, 3) as item, index}
 						{#if index === i}
@@ -49,28 +47,27 @@
 					{/each}
 				{/each}
 			</div>
-
-			<div class="relative overflow-x-auto">
-				<table class="w-full text-sm text-left text-gray-500">
-					<thead class="text-xs text-gray-700 uppercase bg-gray-50">
-						<tr>
-							<th scope="col" class="px-6 py-3">Username</th>
-							<th scope="col" class="px-6 py-3">Score</th>
-							<th scope="col" class="px-6 py-3">Group</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each leaderboardData as item (item.username)}
-							<tr>
-								<td class="px-6 py-4">{item.username}</td>
-								<td class="px-6 py-4">{item.score}</td>
-								<td class="px-6 py-4">{item.group}</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
+			<div class="overflow-auto w-full lg:w-2/3">
+				<div
+					class="py-4 px-1 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl m-4 glass-gray"
+				>
+					<p class="w-4 md:w-8 text-center">23</p>
+					<p class="w-32 md:w-72">Your currently Rank</p>
+					<p class="w-28 md:w-56">อโคจร</p>
+					<p class="w-10 md:w-20 text-center">20</p>
+				</div>
+				{#each leaderboardData as item, index (item.username)}
+					<div
+						class="py-4 px-1 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl m-4"
+					>
+						<p class="w-4 md:w-8 text-center">{index + 1}</p>
+						<p class="w-32 md:w-72">{item.username}</p>
+						<p class="w-28 md:w-56">{item.group}</p>
+						<p class="w-10 md:w-20 text-center">{item.score}</p>
+					</div>
+				{/each}
 			</div>
-			<Pagination page={1} {totalPages} />
+			<Pagination page={1} {totalPages} fetchBy="leaderboard" />
 		</div>
 	</section>
 {:else}

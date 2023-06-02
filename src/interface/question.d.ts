@@ -15,6 +15,11 @@ export interface IQuestionData {
     testcases: ITestCases[];
     createdAt: string;
     updatedAt: string;
+    passedByUser: boolean;
+    userPassCount: number;
+    score: number;
+    hintCost: number;
+    hint: string;
 }
 
 export interface IAuthor {
