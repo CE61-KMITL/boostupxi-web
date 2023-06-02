@@ -1,4 +1,4 @@
-export const generateRankPrefix = (number: number): string => {
+export const generateRankSuffix = (number: number): string => {
 	const suffixes = ['st', 'nd', 'rd'];
 	const remainder10 = number % 10;
 	const remainder100 = number % 100;
