@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { user } from '../../store/user';
+	import { generateRankSuffix } from '../../utils/generateRankSuffix';
 </script>
 
 <div>
@@ -39,7 +40,7 @@
 				<div class="flex px-4 py-2 text-center items-center bg-[#4E4E4E] rounded-xl mx-2">
 					<span class="text-base">Rank</span>
 					<span class="text-xl font-bold block tracking-wide ml-2">
-						{$user.score}th
+						{generateRankSuffix($user.rank)}
 					</span>
 				</div>
 				<div class="flex px-4 py-2 text-center items-center bg-[#DCC70A] rounded-xl mx-2">
@@ -50,7 +51,7 @@
 				</div>
 				<div class="flex px-4 py-2 text-center items-center bg-[#2AAC6E] rounded-xl mx-2">
 					<span class="text-xl font-bold block tracking-wide mr-2">
-						{$user.score}
+						{$user.completedQuestionsCount}
 					</span>
 					<span class="text-base">Passed</span>
 				</div>
