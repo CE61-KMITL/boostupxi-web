@@ -1,4 +1,5 @@
 <script lang="ts">
+	import toast from 'svelte-french-toast';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import Editor from '../../../components/Editor.svelte';
@@ -14,20 +15,37 @@
 		question = await questionService.getQuestionById(id);
 	};
 
-	const handleHint = () => {
-		hint = true;
-	};
-
 	onMount(fetchQuestionById);
+
+	function handleHint() {
+		try {
+			hint = true;
+			toast
+				.promise(Promise.resolve(), {
+					loading: 'Loading...',
+					success: 'Buy hint',
+					error: 'Not enough score!'
+				})
+				.then(() => {
+					const sound = document.getElementById('success-sound') as HTMLAudioElement;
+					sound.play();
+				});
+		} catch (error) {
+			return error;
+		}
+	}
 </script>
 
 {#if question?.title}
-	<section class="text-white body-font mt-5">
-		<div class="container p-8 mx-auto glass-lightgray w-11/12 h-[40rem]">
-			<div class="flex max-h-full">
+	<section class="text-white body-font flex justify-center">
+		<audio src="/Success.mp3" id="success-sound" />
+		<div class="container p-8 mx-auto my-5 glass-lightgray w-11/12 xl:h-[40rem]">
+			<div
+				class="flex max-h-full xl:flex-row flex-col-reverse justify-center xl:items-stretch items-center"
+			>
 				<Editor id={question._id} />
-				<div class="w-1/2 lg:pl-10 lg:py-6 mt-6 lg:mt-0 max-h-full overflow-auto scrollable">
-					<div class="w-11/12 flex justify-between">
+				<div class="w-full xl:w-1/2 xl:pl-10 xl:py-6 my-4 max-h-full overflow-auto scrollable">
+					<div class="xl:w-11/12 flex justify-between mb-6">
 						{#each Array(question?.level) as _, i}
 							<svg
 								aria-hidden="true"
@@ -44,7 +62,7 @@
 						{/each}
 						<h1 class="text-3xl title-font font-medium mb-1">{question?.title}</h1>
 					</div>
-					<div class="w-11/12 flex justify-between">
+					<div class="xl:w-11/12 flex sm:flex-row flex-col justify-between">
 						<h2 class="text-sm title-font tracking-widest">
 							by {question?.author.username}
 						</h2>
@@ -52,18 +70,18 @@
 							{question?.description}
 						</p>
 					</div>
-					<div class="flex mt-6 items-center mb-4 w-11/12">
+					<div class="flex flex-col sm:flex-row mt-6 mb-4 sm:w-11/12">
 						<div class="flex">
 							<span class="mr-3">Tags</span>
 							{#each question?.tags ?? [] as tag}
 								<span
-									class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-indigo-100 bg-indigo-700 rounded-full"
+									class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold text-indigo-100 bg-indigo-700 rounded-full"
 								>
 									{tag}
 								</span>
 							{/each}
 						</div>
-						<div class="flex ml-6 items-center">
+						<div class="flex">
 							<span class="mr-3">File</span>
 							<div class="relative">
 								{#if question?.files.length > 0}
@@ -80,7 +98,7 @@
 					</div>
 					<h1>hint</h1>
 					{#if hint}
-						<div class="glass w-11/12 p-2 my-2">
+						<div class="glass xl:w-11/12 py-2 px-5 my-2 text-sm">
 							<p class="leading-relaxed">
 								{question?.description}
 							</p>
@@ -93,12 +111,12 @@
 						>
 					{/if}
 					<h1>description</h1>
-					<div class="glass w-11/12 p-2 my-2">
+					<div class="glass xl:w-11/12 py-2 px-5 my-2 text-sm">
 						<p class="leading-relaxed">
 							{question?.description}
 						</p>
 					</div>
-					<div class="text-white flex flex-col w-11/12">
+					<div class="text-white flex flex-col xl:w-11/12">
 						{#each question?.testcases ?? [] as testcases, index}
 							{#if testcases.published}
 								<h2>TestCase {index + 1}</h2>
