@@ -1,21 +1,30 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	import toast from 'svelte-french-toast';
 	import Editor from '../../../components/Editor.svelte';
 	import Loading from '../../../components/Loading.svelte';
 	import type { IQuestionData } from '../../../interface/question';
 	import { questionService } from '../../../services/question.services';
 
 	let question: IQuestionData;
-	let hint = false;
 	const id: string = $page.params.id;
 
 	const fetchQuestionById = async () => {
 		question = await questionService.getQuestionById(id);
 	};
 
-	const handleHint = () => {
-		hint = true;
+	const buyingHint = async () => {
+		const response = await questionService.buyingHint(id);
+		console.log(response);
+		if (response.status === 200) {
+			toast.success('Hint Purchased Successfully');
+			setTimeout(() => {
+				window.location.reload();
+			}, 800);
+		}else {
+			toast.error('Not Enough Score');
+		}
 	};
 
 	onMount(fetchQuestionById);
@@ -79,17 +88,17 @@
 						</div>
 					</div>
 					<h1>hint</h1>
-					{#if hint}
+					{#if question.hint}
 						<div class="glass w-11/12 p-2 my-2">
 							<p class="leading-relaxed">
-								{question?.description}
+								{question.hint}
 							</p>
 						</div>
 					{:else}
 						<button
 							type="button"
 							class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 mt-4"
-							on:click={handleHint}>Buy hint</button
+							on:click={buyingHint}>Buy hint</button
 						>
 					{/if}
 					<h1>description</h1>

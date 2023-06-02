@@ -63,7 +63,7 @@
 		});
 
 		editor = Monaco.editor.create(divEl, {
-			value: '#include <stdio.h>\n\nint main() {\n\n\treturn 0;\n}',
+			value: '#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}',
 			language: 'c',
 			theme: 'vs-dark',
 			lineNumbers: 'on',

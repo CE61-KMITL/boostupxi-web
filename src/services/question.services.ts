@@ -18,5 +18,14 @@ export const questionService = {
             const message = (error as Error).message;
             throw new Error(message);
         }
+    },
+    buyingHint: async (id: string) => {
+        try {
+            const response = await axiosInstance.post(`/questions/${id}/hint`);
+            return response;
+        } catch (error) {
+            const message = (error as Error).message;
+            throw new Error(message);
+        }
     }
 }
