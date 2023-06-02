@@ -98,7 +98,7 @@
 					</div>
 					<h1>hint</h1>
 					{#if hint}
-						<div class="glass xl:w-11/12 py-2 px-5 my-2 text-sm">
+						<div class="glass xl:w-11/12 py-2 px-5 my-2 text-sm show-hint">
 							<p class="leading-relaxed">
 								{question?.description}
 							</p>
@@ -106,7 +106,7 @@
 					{:else}
 						<button
 							type="button"
-							class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 mt-4"
+							class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 mt-4"
 							on:click={handleHint}>Buy hint</button
 						>
 					{/if}
