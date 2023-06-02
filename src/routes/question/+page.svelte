@@ -24,7 +24,13 @@
 	<div class="my-5 grid md:grid-cols-2 xl:grid-cols-3 gap-10">
 		{#if questionData.length > 0}
 			{#each questionData as item}
-				<Card id={item._id} title={item.title} level={item.level} author={item.author.username} />
+				<Card
+					id={item._id}
+					title={item.title}
+					level={item.level}
+					author={item.author.username}
+					passCount={item.userPassCount}
+				/>
 			{/each}
 		{:else}
 			<Loading />
