@@ -1,9 +1,9 @@
 <script lang="ts">
-	import toast from 'svelte-french-toast';
 	import Modal from '$/components/Modal.svelte';
 	import { userService } from '$/services/user.services';
 	import { user } from '$/store/user';
 	import { generateRankSuffix } from '$/utils/generateRankSuffix';
+	import toast from 'svelte-french-toast';
 
 	let showModal: boolean = false;
 	let loading: boolean = false;
@@ -18,16 +18,20 @@
 			toast.error('Password and confirm password not match');
 			loading = false;
 		} else {
+			console.log(username, password);
 			const response = await userService.editUserProfile(id, username, password);
-			if (response.statusCode !== 200) {
+			try {
+				if (response.statusCode === 200) {
+					toast.success('Update profile successfully');
+					loading = false;
+					setTimeout(() => {
+						window.location.href = '/question';
+					}, 800);
+				}
+			} catch (error) {
 				toast.error('Update profile failed');
-			} else {
-				toast.success('Update profile successfully');
-				setTimeout(() => {
-					window.location.href = '/question';
-				}, 1000);
+				loading = false;
 			}
-			loading = false;
 		}
 	};
 </script>
