@@ -1,10 +1,10 @@
 <script lang="ts">
+	import { compilerService } from '$/services/compiler.services';
+	import { questionService } from '$/services/question.services';
 	import type * as Monaco from 'monaco-editor';
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 	import { afterUpdate, onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
-	import { compilerService } from '$/services/compiler.services';
-	import { questionService } from '$/services/question.services';
 
 	let subscriptions: ((text: string) => void)[] = [];
 	let content: {
@@ -30,14 +30,18 @@
 			if (response && response.status) {
 				setTimeout(() => {
 					window.location.reload();
-				}, 800);
+				}, 1500);
 				toast.success('ยินดีด้วยน้องผ่านแล้ว เก่งมากๆๆ');
+				const sound = document.getElementById('pass-sound') as HTMLAudioElement;
+				sound.play();
 				loading = false;
 			} else if (response && !response.status) {
 				setTimeout(() => {
 					window.location.reload();
-				}, 800);
+				}, 1500);
 				toast.error('ยังถูกไม่หมดน้า ลองใหม่ๆๆ');
+				const sound = document.getElementById('fail-sound') as HTMLAudioElement;
+				sound.play();
 				loading = false;
 			}
 		}, 4000);
@@ -134,6 +138,8 @@
 </script>
 
 <div class="w-11/12 xl:w-[50rem] h-full flex flex-col">
+	<audio src="/pass.mp3" id="pass-sound" />
+	<audio src="/fail.mp3" id="fail-sound" />
 	<div bind:this={divEl} class="flex container w-full h-[33rem]" />
 	<div class="w-full h-[4rem]">
 		<button

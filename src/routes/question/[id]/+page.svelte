@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
-	import toast from 'svelte-french-toast';
 	import Editor from '$/components/Editor.svelte';
 	import Loading from '$/components/Loading.svelte';
 	import type { IQuestionData } from '$/interface/question';
 	import type { ISubmissionsResult } from '$/interface/submission';
 	import { questionService } from '$/services/question.services';
 	import { submissionDataStore, updateSubmissionData } from '$/store/submission';
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+	import toast from 'svelte-french-toast';
 
 	let question: IQuestionData;
 	const id: string = $page.params.id;
@@ -52,6 +52,7 @@
 
 {#if question?.title}
 	<section class="text-white body-font flex justify-center">
+		<audio src="/Success.mp3" id="pass-sound" />
 		<audio src="/Success.mp3" id="success-sound" />
 		<div class="container p-8 mx-auto my-5 glass-lightgray w-11/12 xl:h-[40rem]">
 			<div
@@ -102,12 +103,17 @@
 						<h1 class="text-3xl title-font font-medium mb-1">{question?.title}</h1>
 					</div>
 					<div class="xl:w-11/12 flex sm:flex-row flex-col justify-between">
-						<h2 class="text-sm title-font tracking-widest mr-10">
+						<h2 class="text-sm title-font tracking-widest mr-10 mt-2">
 							by {question?.author.username}
 						</h2>
-						<p class="leading-relaxed text-base">
-							{question?.description}
-						</p>
+						<div
+							class="flex px-2 py-1 text-center items-center bg-[#2AAC6E] rounded-xl mx-2 border"
+						>
+							<span class="text-xl font-bold block tracking-wide mr-2">
+								{question.userPassCount}
+							</span>
+							<span class="text-base">Passed</span>
+						</div>
 					</div>
 					<div class="flex flex-col sm:flex-row mt-6 mb-4 sm:w-11/12">
 						<div class="flex">
