@@ -32,5 +32,18 @@ export const userService = {
     getUserProfile: async () => {
         const response = await axiosInstance.get("/users/profile");
         return response.data;
+    },
+    editUserProfile: async (id: string, username: string, passsword: string, role: string) => {
+        try {
+            const response = await axiosInstance.patch(`/users/${id}`, {
+                username,
+                passsword,
+                role,
+            });
+            return response.data;
+        } catch (error) {
+            const message = (error as Error).message;
+            throw new Error(message);
+        }
     }
 }

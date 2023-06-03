@@ -102,10 +102,10 @@
 						<h1 class="text-3xl title-font font-medium mb-1">{question?.title}</h1>
 					</div>
 					<div class="xl:w-11/12 flex sm:flex-row flex-col justify-between">
-						<h2 class="text-sm title-font tracking-widest">
+						<h2 class="text-sm title-font tracking-widest mr-10">
 							by {question?.author.username}
 						</h2>
-						<p class="leading-relaxed">
+						<p class="leading-relaxed text-base">
 							{question?.description}
 						</p>
 					</div>
