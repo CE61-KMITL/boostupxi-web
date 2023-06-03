@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import toast from 'svelte-french-toast';
 	import { userService } from '../services/user.services';
 	import { user } from '../store/user';
@@ -62,14 +63,33 @@
 					? 'flex'
 					: 'hidden'}"
 			>
-				<a class="hover:text-gray-400" href="/question">Home</a>
+				<a
+					class={`hover:text-gray-400 ${$page.url.pathname === '/question' && 'text-gray-400'}`}
+					href="/question">Home</a
+				>
 				{#if !$user}
-					<a class=" hover:text-gray-400" href="/login">Login</a>
+					<a
+						class={`hover:text-gray-400 ${
+							$page.url.pathname === '/' && 'text-gray-400'
+						}`}
+						href="/">Login</a
+					>
 				{/if}
 				{#if $user}
-					<a class="hover:text-gray-400" href="/leaderboard">Leaderboard</a>
-					<a class="hover:text-gray-400" href="/guide">Guide</a>
-					<a class="hover:text-gray-400" href="/profile">Profile</a>
+					<a
+						class={`hover:text-gray-400 ${
+							$page.url.pathname === '/leaderboard' && 'text-gray-400'
+						}`}
+						href="/leaderboard">Leaderboard</a
+					>
+					<a
+						class={`hover:text-gray-400 ${$page.url.pathname === '/guide' && 'text-gray-400'}`}
+						href="/guide">Guide</a
+					>
+					<a
+						class={`hover:text-gray-400 ${$page.url.pathname === '/profile' && 'text-gray-400'}`}
+						href="/profile">Profile</a
+					>
 					<button class="hover:text-gray-400" on:click={logout}>Logout</button>
 				{/if}
 			</div>
