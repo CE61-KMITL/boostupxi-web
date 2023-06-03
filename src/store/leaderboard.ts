@@ -1,6 +1,6 @@
 import { writable, type Writable } from 'svelte/store';
-import type { ILeaderboardData, ILeaderboardGroup } from '../interface/leaderboard';
-import { leaderboardService } from '../services/leaderboard.services';
+import type { ILeaderboardData, ILeaderboardGroup } from '$/interface/leaderboard';
+import { leaderboardService } from '$/services/leaderboard.services';
 
 export const leaderboardDataStore: Writable<ILeaderboardData[]> = writable<ILeaderboardData[]>([]);
 export const leaderboardGroupDataStore: Writable<ILeaderboardGroup[]> = writable<ILeaderboardGroup[]>([]);

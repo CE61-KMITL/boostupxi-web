@@ -1,6 +1,6 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
-	import { userService } from '../services/user.services';
+	import { userService } from '$/services/user.services';
 
 	let email: string = '';
 	let password: string = '';

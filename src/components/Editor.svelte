@@ -3,8 +3,8 @@
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 	import { afterUpdate, onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
-	import { compilerService } from '../services/compiler.services';
-	import { questionService } from '../services/question.services';
+	import { compilerService } from '$/services/compiler.services';
+	import { questionService } from '$/services/question.services';
 
 	let subscriptions: ((text: string) => void)[] = [];
 	let content: {

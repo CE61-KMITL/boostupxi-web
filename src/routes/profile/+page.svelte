@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { user } from '../../store/user';
-	import { generateRankSuffix } from '../../utils/generateRankSuffix';
+	import { user } from '$/store/user';
+	import { generateRankSuffix } from '$/utils/generateRankSuffix';
 </script>
 
 <div>
@@ -32,7 +32,7 @@
 						{$user.email}
 					</div>
 					<span class="text-xl font-bold block tracking-wide"
-						>{$user.group !== '' ? $user.group : 'ระเบียบวาทะศิลป์'}</span
+						>{$user.group !== '' ? $user.group : 'Staff'}</span
 					>
 				</div>
 			</div>

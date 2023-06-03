@@ -2,12 +2,12 @@
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
-	import Editor from '../../../components/Editor.svelte';
-	import Loading from '../../../components/Loading.svelte';
-	import type { IQuestionData } from '../../../interface/question';
-	import type { ISubmissionsResult } from '../../../interface/submission';
-	import { questionService } from '../../../services/question.services';
-	import { submissionDataStore, updateSubmissionData } from '../../../store/submission';
+	import Editor from '$/components/Editor.svelte';
+	import Loading from '$/components/Loading.svelte';
+	import type { IQuestionData } from '$/interface/question';
+	import type { ISubmissionsResult } from '$/interface/submission';
+	import { questionService } from '$/services/question.services';
+	import { submissionDataStore, updateSubmissionData } from '$/store/submission';
 
 	let question: IQuestionData;
 	const id: string = $page.params.id;
