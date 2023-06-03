@@ -1,19 +1,25 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fetchLeaderboardData } from '../store/leaderboard';
 	import { fetchQuestionData } from '../store/question';
 
 	export let page: number;
 	export let totalPages: number;
+	export let fetchBy: string;
 
-	const fetchQuestions = async () => {
-		await fetchQuestionData(page);
+	const fetchData = async () => {
+		if (fetchBy === 'question') {
+			await fetchQuestionData(page);
+		} else if (fetchBy === 'leaderboard') {
+			await fetchLeaderboardData(page);
+		}
 	};
 
-	onMount(fetchQuestions);
+	onMount(fetchData);
 
 	const goToPage = (newPage: number) => {
 		page = newPage;
-		fetchQuestions();
+		fetchData();
 	};
 </script>
 
@@ -23,14 +29,14 @@
 			<li>
 				<button
 					class={`block px-3 py-2 ml-0 leading-tight ${
-						page === 1 ? 'text-gray-500' : 'text-gray-800'
-					} rounded-l-lg hover:bg-gray-100 hover:text-gray-700`}
+						page === 1 ? 'text-gray-500 bg-gray-500' : 'text-gray-800'
+					} rounded-l-lg hover:bg-gray-500`}
 					on:click={() => goToPage(page - 1)}
 					disabled={page === 1}
 				>
 					<svg
 						aria-hidden="true"
-						class="w-5 h-5"
+						class="w-5 h-5 text-white"
 						fill="currentColor"
 						viewBox="0 0 20 20"
 						xmlns="http://www.w3.org/2000/svg"
@@ -58,15 +64,15 @@
 			{/each}
 			<li>
 				<button
-					class={`block px-3 py-2 leading-tight ${
-						page === totalPages ? 'text-gray-500' : 'text-gray-800'
-					} rounded-r-lg hover:bg-gray-100 hover:text-gray-700`}
+					class={`block px-3 py-2 ml-0 leading-tight ${
+						page === totalPages ? 'text-gray-500 bg-gray-500' : 'text-gray-800'
+					} rounded-r-lg hover:bg-gray-500`}
 					on:click={() => goToPage(page + 1)}
 					disabled={page === totalPages}
 				>
 					<svg
 						aria-hidden="true"
-						class="w-5 h-5"
+						class="w-5 h-5 text-white"
 						fill="currentColor"
 						viewBox="0 0 20 20"
 						xmlns="http://www.w3.org/2000/svg"

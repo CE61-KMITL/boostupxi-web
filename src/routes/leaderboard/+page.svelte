@@ -19,12 +19,10 @@
 
 	const fetchLeaderboard = async () => {
 		await fetchLeaderboardData(page);
-		console.log(leaderboardData);
 	};
 
 	const fetchLeaderboardGroup = async () => {
 		await fetchLeaderboardGroupData();
-		console.log(leaderboardGroupData);
 	};
 
 	onMount(fetchLeaderboard);
@@ -50,7 +48,6 @@
 				{/each}
 			</div>
 			<div class="overflow-auto w-full lg:w-2/3">
-				<!-- Your current rank -->
 				<div
 					class="flip px-1 py-4 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl glass-gray m-4"
 				>
@@ -59,19 +56,19 @@
 					<p class="w-28 md:w-56">อโคจร</p>
 					<p class="w-10 md:w-20 text-center">20</p>
 				</div>
-				{#each leaderboardData as item, index (item.username)}
+				{#each leaderboardData as board, index (board.username)}
 					<div
 						class="flip py-4 px-1 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl m-4"
 						style={`--i:${index + 1}`}
 					>
-						<p class="w-4 md:w-8 text-center">{index + 1}</p>
-						<p class="w-32 md:w-72">{item.username}</p>
-						<p class="w-28 md:w-56">{item.group}</p>
-						<p class="w-10 md:w-20 text-center">{item.score}</p>
+						<p class="w-4 md:w-8 text-center">{board.rank}</p>
+						<p class="w-32 md:w-72">{board.username}</p>
+						<p class="w-28 md:w-56">{board.group}</p>
+						<p class="w-10 md:w-20 text-center">{board.score}</p>
 					</div>
 				{/each}
 			</div>
-			<Pagination page={1} {totalPages} />
+			<Pagination page={1} {totalPages} fetchBy="leaderboard" />
 		</div>
 	</section>
 {:else}

@@ -23,14 +23,8 @@
 <div class="w-full justify-center flex mb-10">
 	<div class="my-5 grid md:grid-cols-2 xl:grid-cols-3 gap-10">
 		{#if questionData.length > 0}
-			{#each questionData as item}
-				<Card
-					id={item._id}
-					title={item.title}
-					level={item.level}
-					author={item.author.username}
-					passCount={item.userPassCount}
-				/>
+			{#each questionData as question}
+				<Card id={question._id} title={question.title} level={question.level} author={question.author.username} userPass={question.passedByUser} userPassCount={question.userPassCount}  />
 			{/each}
 		{:else}
 			<Loading />
@@ -38,4 +32,4 @@
 	</div>
 </div>
 
-<Pagination page={1} {totalPages} />
+<Pagination page={1} {totalPages} fetchBy="question" />

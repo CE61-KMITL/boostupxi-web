@@ -1,25 +1,29 @@
 <script lang="ts">
-	import toast from 'svelte-french-toast';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	import toast from 'svelte-french-toast';
 	import Editor from '../../../components/Editor.svelte';
 	import Loading from '../../../components/Loading.svelte';
 	import type { IQuestionData } from '../../../interface/question';
+	import type { ISubmissionsResult } from '../../../interface/submission';
 	import { questionService } from '../../../services/question.services';
+	import { submissionDataStore, updateSubmissionData } from '../../../store/submission';
 
 	let question: IQuestionData;
-	let hint = false;
 	const id: string = $page.params.id;
+	let submissionResult: ISubmissionsResult;
 
 	const fetchQuestionById = async () => {
 		question = await questionService.getQuestionById(id);
 	};
 
-	onMount(fetchQuestionById);
+	const fetchSubmissionResult = async () => {
+		await updateSubmissionData(id);
+	};
 
-	function handleHint() {
-		try {
-			hint = true;
+	const buyingHint = async () => {
+		const response = await questionService.buyingHint(id);
+		if (response.status === 200) {
 			toast
 				.promise(Promise.resolve(), {
 					loading: 'Loading...',
@@ -30,9 +34,19 @@
 					const sound = document.getElementById('success-sound') as HTMLAudioElement;
 					sound.play();
 				});
-		} catch (error) {
-			return error;
+			setTimeout(() => {
+				window.location.reload();
+			}, 800);
+		} else {
+			toast.error('Not Enough Score');
 		}
+	};
+
+	onMount(fetchQuestionById);
+	onMount(fetchSubmissionResult);
+
+	$: {
+		submissionResult = $submissionDataStore;
 	}
 </script>
 
@@ -45,6 +59,31 @@
 			>
 				<Editor id={question._id} />
 				<div class="w-full xl:w-1/2 xl:pl-10 xl:py-6 my-4 max-h-full overflow-auto scrollable">
+					<div class="py-3 xl:py-0">
+						<div class="absolute top-5 center-10">
+							{#if submissionResult !== undefined}
+								<h3 class="text-2xl font-bold">{submissionResult.result}</h3>
+							{/if}
+						</div>
+						{#if question?.passedByUser}
+							<div class="absolute top-3 right-20">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke-width="1.5"
+									stroke="currentColor"
+									class="w-10 h-10 text-white border bg-[#2AAC6E] border-[#2AAC6E] rounded-full"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+									/>
+								</svg>
+							</div>
+						{/if}
+					</div>
 					<div class="xl:w-11/12 flex justify-between mb-6">
 						{#each Array(question?.level) as _, i}
 							<svg
@@ -96,19 +135,21 @@
 							</div>
 						</div>
 					</div>
-					<h1>hint</h1>
-					{#if hint}
-						<div class="glass xl:w-11/12 py-2 px-5 my-2 text-sm show-hint">
-							<p class="leading-relaxed">
-								{question?.description}
-							</p>
-						</div>
-					{:else}
-						<button
-							type="button"
-							class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 mt-4"
-							on:click={handleHint}>Buy hint</button
-						>
+					{#if question.hasHint}
+						<h1>hint</h1>
+						{#if question.hint}
+							<div class="glass xl:w-11/12 py-2 px-5 my-2 text-sm">
+								<p class="leading-relaxed">
+									{question.hint}
+								</p>
+							</div>
+						{:else}
+							<button
+								type="button"
+								class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 mt-4"
+								on:click={buyingHint}>Buy hint</button
+							>
+						{/if}
 					{/if}
 					<h1>description</h1>
 					<div class="glass xl:w-11/12 py-2 px-5 my-2 text-sm">
