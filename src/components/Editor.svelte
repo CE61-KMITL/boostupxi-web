@@ -136,7 +136,12 @@
 <div class="w-11/12 xl:w-[50rem] h-full flex flex-col">
 	<div bind:this={divEl} class="flex container w-full h-[33rem]" />
 	<div class="w-full h-[4rem]">
-		<button type="button" class="w-full text-white rgb-button mt-5" on:click={handleSubmit}>
+		<button
+			type="button"
+			class="w-full text-white rgb-button mt-5"
+			on:click={handleSubmit}
+			disabled={loading}
+		>
 			{#if loading}
 				<svg
 					aria-hidden="true"
