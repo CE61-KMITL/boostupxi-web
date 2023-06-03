@@ -10,8 +10,7 @@
 	let id: string = $user._id;
 	let username: string = $user.username;
 	let email: string = $user.email;
-	let role: string = $user.role;
-	let password: string = $user.email;
+	let password: string;
 	let confirmPassword: string;
 	const handleUpdateProfile = async () => {
 		loading = true;
@@ -19,7 +18,7 @@
 			toast.error('Password and confirm password not match');
 			loading = false;
 		} else {
-			const response = await userService.editUserProfile(id, username, password, role);
+			const response = await userService.editUserProfile(id, username, password);
 			if (response.statusCode !== 200) {
 				toast.error('Update profile failed');
 			} else {
@@ -138,7 +137,6 @@
 					name="email"
 					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					bind:value={email}
-					required
 					disabled
 				/>
 			</div>
@@ -156,7 +154,6 @@
 					name="password"
 					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					bind:value={password}
-					required
 				/>
 			</div>
 			<div class="w-full md:w-1/2 px-3">
@@ -171,7 +168,6 @@
 					name="confirm-password"
 					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					bind:value={confirmPassword}
-					required
 				/>
 			</div>
 		</div>
