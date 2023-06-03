@@ -20,14 +20,14 @@
 /* gradient animation bg */
 .gradient-animation {
 	background: linear-gradient(135deg, #e90924, #e23480, #9a35b8, #0c68ac, #2aac6e, #eadf2b);
-	background-size: 400% 580%;
+	background-size: 400% 650%;
 	animation: gradient 8s ease infinite;
 	height: 100vh;
 }
 
 @media only screen and (min-width: 768px) {
 	.gradient-animation {
-		background-size: 400% 450%;
+		background-size: 400% 500%;
 	}
 }
 
@@ -216,6 +216,20 @@
 }
 
 @keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.show-hint {
+	opacity: 0;
+	animation: hint-animate 2s forwards;
+}
+
+@keyframes hint-animate {
 	from {
 		opacity: 0;
 	}

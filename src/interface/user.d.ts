@@ -11,3 +11,8 @@ export interface IUser {
     completedQuestionsCount: number;
     rank: number;
 }
+
+export interface IEditProfile {
+	username: string;
+	password?: string;
+}
