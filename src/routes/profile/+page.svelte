@@ -32,7 +32,7 @@
 						{$user.email}
 					</div>
 					<span class="text-xl font-bold block tracking-wide"
-						>{$user.group !== '' ? $user.group : 'ระเบียบวาทะศิลป์'}</span
+						>{$user.group !== '' ? $user.group : 'Staff'}</span
 					>
 				</div>
 			</div>
