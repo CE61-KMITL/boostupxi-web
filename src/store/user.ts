@@ -11,7 +11,8 @@ export const initialUser: IUser = {
     _id: "",
     group: "",
     createdAt: "",
-    updatedAt: ""
+    updatedAt: "",
+    completedQuestionsCount: 0
 }
 
 export const user: Writable<IUser> = writable(initialUser);

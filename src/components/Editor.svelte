@@ -25,13 +25,15 @@
 		await compilerService.submitCode(text, id);
 		setTimeout(async () => {
 			const response = await questionService.getSubmission(id);
-			console.log(response)
 			if (response && response.status) {
 				setTimeout(() => {
 					window.location.reload();
 				}, 800);
 				toast.success('ยินดีด้วยน้องผ่านแล้ว เก่งมากๆๆ');
 			} else if (response && !response.status) {
+				setTimeout(() => {
+					window.location.reload();
+				}, 800);
 				toast.error('ยังถูกไม่หมดน้า ลองใหม่ๆๆ');
 			}
 		}, 4000);
@@ -127,9 +129,7 @@
 	});
 </script>
 
-<div
-	class="w-[550px] sm:w-[600px] md:w-[700px] lg:w-[800px] xl:w-[1000px] 2xl:w-[50rem] h-full flex flex-col"
->
+<div class="w-11/12 xl:w-[50rem] h-full flex flex-col">
 	<div bind:this={divEl} class="flex container w-full h-[33rem]" />
 	<div class="w-full h-[4rem]">
 		<button type="button" class="w-full text-white rgb-button mt-5" on:click={handleSubmit}

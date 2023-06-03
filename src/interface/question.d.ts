@@ -19,7 +19,8 @@ export interface IQuestionData {
     userPassCount: number;
     score: number;
     hintCost: number;
-    hint: string;
+    hasHint: boolean;
+    hint?: string;
 }
 
 export interface IAuthor {

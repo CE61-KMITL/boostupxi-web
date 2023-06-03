@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
-	import type { IUser } from '../interface/user';
 	import { userService } from '../services/user.services';
 	import { user } from '../store/user';
 
@@ -12,11 +10,16 @@
 	};
 	const logout = async () => {
 		try {
-			toast.promise(userService.logout(), {
-				loading: 'Loading...',
-				success: 'Logout Success!',
-				error: 'Logout Failed!'
-			});
+			toast
+				.promise(userService.logout(), {
+					loading: 'Loading...',
+					success: 'Logout Success!',
+					error: 'Logout Failed!'
+				})
+				.then(() => {
+					const sound = document.getElementById('success-sound') as HTMLAudioElement;
+					sound.play();
+				});
 		} catch (error) {
 			return error;
 		}
@@ -24,6 +27,7 @@
 </script>
 
 <div>
+	<audio src="/Success.mp3" id="success-sound" />
 	<div>
 		<nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center text-white">
 			<div class="flex items-center justify-between">
@@ -58,15 +62,15 @@
 					? 'flex'
 					: 'hidden'}"
 			>
-				<a class="hover:text-blue-400" href="/question">Home</a>
+				<a class="hover:text-gray-400" href="/question">Home</a>
 				{#if !$user}
-					<a class=" hover:text-blue-400" href="/login">Login</a>
+					<a class=" hover:text-gray-400" href="/login">Login</a>
 				{/if}
 				{#if $user}
-					<a class="hover:text-blue-400" href="/leaderboard">Leaderboard</a>
-					<a class="hover:text-blue-400" href="/guide">Guide</a>
-					<a class="hover:text-blue-400" href="/profile">Profile</a>
-					<button class="hover:text-blue-400" on:click={logout}>Logout</button>
+					<a class="hover:text-gray-400" href="/leaderboard">Leaderboard</a>
+					<a class="hover:text-gray-400" href="/guide">Guide</a>
+					<a class="hover:text-gray-400" href="/profile">Profile</a>
+					<button class="hover:text-gray-400" on:click={logout}>Logout</button>
 				{/if}
 			</div>
 		</nav>
