@@ -39,7 +39,7 @@
 			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9c93uXMHa1QaeW9g4bvGhYtN92-dtsa_4KiTWomiooQ&s"
 			alt="user profile"
 		/>
-		<div class="max-w-sm mx-auto glass user-content">
+		<div class="w-fit p-4 mx-auto glass user-content">
 			<div class="absolute right-7 top-2 cursor-pointer">
 				<button on:click={() => (showModal = true)}>
 					<svg
@@ -58,6 +58,7 @@
 					</svg>
 				</button>
 			</div>
+
 			<div class="text-center mt-20">
 				<div class="py-2">
 					<h3 class="font-bold text-2xl mb-1">{$user.username}</h3>
@@ -83,20 +84,21 @@
 					>
 				</div>
 			</div>
-			<div class="flex justify-center my-4">
-				<div class="flex px-4 py-2 text-center items-center bg-[#4E4E4E] rounded-xl mx-2">
+
+			<div class="flex justify-center mt-4 space-x-4">
+				<div class="flex px-4 py-2 text-center items-center bg-[#4E4E4E] rounded-xl">
 					<span class="text-base">Rank</span>
 					<span class="text-xl font-bold block tracking-wide ml-2">
 						{generateRankSuffix($user.rank)}
 					</span>
 				</div>
-				<div class="flex px-4 py-2 text-center items-center bg-[#DCC70A] rounded-xl mx-2">
+				<div class="flex px-4 py-2 text-center items-center bg-[#DCC70A] rounded-xl">
 					<span class="text-base mr-2">Scores</span>
 					<span class="text-xl font-bold block tracking-wide">
 						{$user.score}
 					</span>
 				</div>
-				<div class="flex px-4 py-2 text-center items-center bg-[#2AAC6E] rounded-xl mx-2">
+				<div class="flex px-4 py-2 text-center items-center bg-[#2AAC6E] rounded-xl">
 					<span class="text-xl font-bold block tracking-wide mr-2">
 						{$user.completedQuestionsCount}
 					</span>
