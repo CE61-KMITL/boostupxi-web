@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Loading from '../../components/Loading.svelte';
-	import Pagination from '../../components/Pagination.svelte';
-	import TopCard from '../../components/TopCard.svelte';
-	import type { ILeaderboardData, ILeaderboardGroup } from '../../interface/leaderboard';
+	import Loading from '$/components/Loading.svelte';
+	import Pagination from '$/components/Pagination.svelte';
+	import TopCard from '$/components/TopCard.svelte';
+	import type { ILeaderboardData, ILeaderboardGroup } from '$/interface/leaderboard';
 	import {
 		fetchLeaderboardData,
 		fetchLeaderboardGroupData,
 		leaderboardDataStore,
 		leaderboardGroupDataStore,
 		leaderboardPage
-	} from '../../store/leaderboard';
-	import { user } from '../../store/user';
+	} from '$/store/leaderboard';
+	import { user } from '$/store/user';
 
 	let leaderboardData: ILeaderboardData[] = [];
 	let leaderboardGroupData: ILeaderboardGroup[] = [];

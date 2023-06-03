@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import toast from 'svelte-french-toast';
-	import { userService } from '../services/user.services';
-	import { user } from '../store/user';
+	import { userService } from '$/services/user.services';
+	import { user } from '$/store/user';
 
 	let showMenu: boolean = false;
 

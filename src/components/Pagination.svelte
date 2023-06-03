@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { fetchLeaderboardData } from '../store/leaderboard';
-	import { fetchQuestionData } from '../store/question';
+	import { fetchLeaderboardData } from '$/store/leaderboard';
+	import { fetchQuestionData } from '$/store/question';
 
 	export let page: number;
 	export let totalPages: number;

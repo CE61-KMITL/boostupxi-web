@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { user } from '../../store/user';
-	import { generateRankSuffix } from '../../utils/generateRankSuffix';
+	import { user } from '$/store/user';
+	import { generateRankSuffix } from '$/utils/generateRankSuffix';
 </script>
 
 <div>
