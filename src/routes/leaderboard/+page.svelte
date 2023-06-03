@@ -11,6 +11,7 @@
 		leaderboardGroupDataStore,
 		leaderboardPage
 	} from '../../store/leaderboard';
+	import { user } from '../../store/user';
 
 	let leaderboardData: ILeaderboardData[] = [];
 	let leaderboardGroupData: ILeaderboardGroup[] = [];
@@ -51,10 +52,10 @@
 				<div
 					class="flip px-1 py-4 bg-gray-800 justify-around flex text-white text-xs md:text-lg rounded-2xl glass-gray m-4"
 				>
-					<p class="w-4 md:w-8 text-center">23</p>
+					<p class="w-4 md:w-8 text-center">{$user.rank}</p>
 					<p class="w-32 md:w-72">Your currently Rank</p>
-					<p class="w-28 md:w-56">อโคจร</p>
-					<p class="w-10 md:w-20 text-center">20</p>
+					<p class="w-28 md:w-56">{$user.group}</p>
+					<p class="w-10 md:w-20 text-center">{$user.score}</p>
 				</div>
 				{#each leaderboardData as board, index (board.username)}
 					<div
