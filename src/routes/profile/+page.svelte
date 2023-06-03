@@ -1,9 +1,9 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
-	import Modal from '../../components/Modal.svelte';
-	import { userService } from '../../services/user.services';
-	import { user } from '../../store/user';
-	import { generateRankSuffix } from '../../utils/generateRankSuffix';
+	import Modal from '$/components/Modal.svelte';
+	import { userService } from '$/services/user.services';
+	import { user } from '$/store/user';
+	import { generateRankSuffix } from '$/utils/generateRankSuffix';
 
 	let showModal: boolean = false;
 	let loading: boolean = false;
@@ -80,7 +80,7 @@
 						{$user.email}
 					</div>
 					<span class="text-xl font-bold block tracking-wide"
-						>{$user.group !== '' ? $user.group : 'ระเบียบวาทะศิลป์'}</span
+						>{$user.group !== '' ? $user.group : 'Staff'}</span
 					>
 				</div>
 			</div>

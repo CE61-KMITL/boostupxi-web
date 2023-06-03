@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Card from '../../components/Card.svelte';
-	import Loading from '../../components/Loading.svelte';
-	import Pagination from '../../components/Pagination.svelte';
-	import type { IQuestionData } from '../../interface/question';
-	import { fetchQuestionData, questionDataStore, questionPage } from '../../store/question';
+	import Card from '$/components/Card.svelte';
+	import Loading from "$/components/Loading.svelte";	
+	import Pagination from "$/components/Pagination.svelte";
+	import type { IQuestionData } from '$/interface/question';
+	import { fetchQuestionData, questionDataStore, questionPage } from '$/store/question';
 
 	let questionData: IQuestionData[] = [];
 	let page: number = 1;
@@ -24,7 +24,14 @@
 	<div class="my-5 grid md:grid-cols-2 xl:grid-cols-3 gap-10">
 		{#if questionData.length > 0}
 			{#each questionData as question}
-				<Card id={question._id} title={question.title} level={question.level} author={question.author.username} userPass={question.passedByUser} userPassCount={question.userPassCount}  />
+				<Card
+					id={question._id}
+					title={question.title}
+					level={question.level}
+					author={question.author.username}
+					userPass={question.passedByUser}
+					userPassCount={question.userPassCount}
+				/>
 			{/each}
 		{:else}
 			<Loading />

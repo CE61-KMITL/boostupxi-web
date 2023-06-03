@@ -1,6 +1,6 @@
 import { writable, type Writable } from "svelte/store";
-import type { ISubmissionsResult } from "../interface/submission";
-import { questionService } from "../services/question.services";
+import type { ISubmissionsResult } from "$/interface/submission";
+import { questionService } from "$/services/question.services";
 
 export const initialSubmissionData: ISubmissionsResult = {
     _id: "",
