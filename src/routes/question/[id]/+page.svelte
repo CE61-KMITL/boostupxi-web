@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Editor from '$/components/Editor.svelte';
 	import Loading from '$/components/Loading.svelte';
+	import Result from '$/components/Result.svelte';
 	import type { IQuestionData } from '$/interface/question';
 	import type { ISubmissionsResult } from '$/interface/submission';
 	import { questionService } from '$/services/question.services';
@@ -63,7 +64,10 @@
 					<div class="py-3 xl:py-0">
 						<div class="absolute top-5 center-10">
 							{#if submissionResult !== undefined}
-								<h3 class="text-2xl font-bold">{submissionResult.result}</h3>
+								<div class="inline-flex">
+									<h3 class="text-2xl font-bold pr-5">{submissionResult.result}</h3>
+									<Result />
+								</div>
 							{/if}
 						</div>
 						{#if question?.passedByUser}
