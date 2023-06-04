@@ -44,7 +44,7 @@
 				sound.play();
 				loading = false;
 			}
-		}, 4000);
+		}, 8000);
 	};
 
 	$: onMount(async () => {
