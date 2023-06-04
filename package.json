@@ -14,6 +14,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.5.0",
+		"@types/jquery": "^3.5.16",
 		"@types/js-cookie": "^3.0.3",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
@@ -36,8 +37,11 @@
 		"@monaco-editor/react": "^4.5.1",
 		"axios": "^1.4.0",
 		"dotenv": "^16.0.3",
+		"jquery": "^3.7.0",
 		"js-cookie": "^3.0.5",
+		"kinet": "^2.2.1",
 		"monaco-editor": "^0.38.0",
+		"simplex-noise": "^4.0.1",
 		"svelte-french-toast": "1.0.4-beta.0",
 		"svelte-spa-router": "^3.3.0"
 	}

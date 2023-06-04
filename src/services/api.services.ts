@@ -9,7 +9,7 @@ export const axiosInstance: AxiosInstance = axios.create({
     headers: {
         "Content-Type": "application/json",
     },
-});;
+});
 
 const requestInterceptor = (config: InternalAxiosRequestConfig) => {
     const token = Cookies.get('token');

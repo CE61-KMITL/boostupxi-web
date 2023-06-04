@@ -1,6 +1,6 @@
 import { writable, type Writable } from "svelte/store";
-import type { IQuestionData } from "../interface/question";
-import { questionService } from "../services/question.services";
+import type { IQuestionData } from "$/interface/question";
+import { questionService } from "$/services/question.services";
 
 export const questionDataStore: Writable<IQuestionData[]> = writable<IQuestionData[]>([]);
 export const questionPage: Writable<number> = writable<number>(0);

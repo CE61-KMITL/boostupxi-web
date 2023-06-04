@@ -1,17 +1,22 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
-	import { userService } from '../services/user.services';
+	import { userService } from '$/services/user.services';
 
 	let email: string = '';
 	let password: string = '';
 
 	$: submit = async () => {
 		try {
-			toast.promise(userService.login(email, password), {
-				loading: 'Loading...',
-				success: 'Login Success!',
-				error: 'Login Failed!'
-			});
+			toast
+				.promise(userService.login(email, password), {
+					loading: 'Loading...',
+					success: 'Login Success!',
+					error: 'Login Failed!'
+				})
+				.then(() => {
+					const sound = document.getElementById('success-sound') as HTMLAudioElement;
+					sound.play();
+				});
 		} catch (error) {
 			const message = (error as Error).message;
 			throw new Error(message);
@@ -20,6 +25,7 @@
 </script>
 
 <section class="gradient-animation text-white">
+	<audio src="/Success.mp3" id="success-sound" />
 	<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0">
 		<div class="w-full glass md:mt-0 sm:max-w-md xl:p-0">
 			<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -88,7 +94,7 @@
 					</div>
 					<button
 						type="submit"
-						class="w-full text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+						class="w-full text-gray-600 bg-white hover:bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
 						>Sign in</button
 					>
 				</form>

@@ -8,4 +8,11 @@ export interface IUser {
     createdAt: string;
     updatedAt: string;
     tasks: never[];
+    completedQuestionsCount: number;
+    rank: number;
+}
+
+export interface IEditProfile {
+	username: string;
+	password?: string;
 }

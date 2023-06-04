@@ -1,18 +1,19 @@
 <script async script lang="ts">
+	import Error from '$/components/Error.svelte';
+	import Loading from '$/components/Loading.svelte';
+	import Navbar from '$/components/Navbar.svelte';
+	import { user } from '$/store/user';
+	import '$/styles/app.css';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import { Toaster } from 'svelte-french-toast';
-	import '../app.css';
-	import Error from '../components/Error.svelte';
-	import Loading from '../components/Loading.svelte';
-	import Navbar from '../components/Navbar.svelte';
-	import { user } from '../store/user';
 
 	let initialLoad: boolean = true;
 
 	const loading = () => {
 		initialLoad = false;
 	};
+
 	onMount(loading);
 </script>
 

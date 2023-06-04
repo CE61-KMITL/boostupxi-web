@@ -5,7 +5,7 @@
 </script>
 
 <div>
-	<div class="flex flex-col items-center mt-4 text-white w-full h-full">
+	<div class="flex flex-col items-center mt-4 text-white w-full h-full mb-5">
 		<div
 			class={`${
 				rank === 1 ? 'w-44 h-44 lg:w-80 lg:h-80' : 'w-28 h-28 lg:w-56 lg:h-56'
