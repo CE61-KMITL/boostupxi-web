@@ -29,7 +29,7 @@
 			<li>
 				<button
 					class={`block px-3 py-2 ml-0 leading-tight ${
-						page === 1 ? 'text-gray-500 bg-gray-500' : 'text-gray-800'
+						page === 1 ? 'text-gray-500 ' : 'text-gray-800'
 					} rounded-l-lg hover:bg-gray-500`}
 					on:click={() => goToPage(page - 1)}
 					disabled={page === 1}
@@ -65,7 +65,7 @@
 			<li>
 				<button
 					class={`block px-3 py-2 ml-0 leading-tight ${
-						page === totalPages ? 'text-gray-500 bg-gray-500' : 'text-gray-800'
+						page === totalPages ? 'text-gray-500' : 'text-gray-800'
 					} rounded-r-lg hover:bg-gray-500`}
 					on:click={() => goToPage(page + 1)}
 					disabled={page === totalPages}

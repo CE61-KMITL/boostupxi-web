@@ -44,7 +44,10 @@
 				{/each}
 			</div>
 		</div>
-		<h5 class="mb-2 text-3xl font-semibold tracking-tight">
+		<h5
+			class="mb-2 text-2xl tracking-tight font-title text-ellipsis whitespace-nowrap w-72 overflow-hidden"
+			style="text-shadow: 2px 2px 4px gray;"
+		>
 			{title}
 		</h5>
 		<div class="w-full flex justify-between my-2 mt-6">

@@ -22,6 +22,49 @@
 			throw new Error(message);
 		}
 	};
+
+	let a = 0;
+	function mouseHover(): boolean {
+		const tick = document.getElementById('check') as HTMLInputElement;
+
+		if (tick.checked === false && a === 0) {
+			buttonMoveLeft();
+			a = 1;
+			return false;
+		}
+		if (tick.checked === false && a === 1) {
+			buttonMoveRight();
+			a = 2;
+			return false;
+		}
+		if (tick.checked === false && a === 2) {
+			buttonMoveLeft();
+			a = 1;
+			return false;
+		}
+		return true;
+	}
+
+	function buttonMoveLeft(): void {
+		const button: HTMLElement | null = document.getElementById('login-b');
+		if (button) {
+			button.style.transform = 'translateX(160%)';
+		}
+	}
+
+	function buttonMoveRight(): void {
+		const button: HTMLElement | null = document.getElementById('login-b');
+		if (button) {
+			button.style.transform = 'translateX(0%)';
+		}
+	}
+
+	function resetBtn(): void {
+		const button: HTMLElement | null = document.getElementById('login-b');
+		if (button) {
+			button.style.transform = 'translateX(0%)';
+		}
+	}
 </script>
 
 <section class="gradient-animation text-white">
@@ -92,11 +135,19 @@
 							/>
 						</div>
 					</div>
-					<button
-						type="submit"
-						class="w-full text-gray-600 bg-white hover:bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-						>Sign in</button
-					>
+					<div class="flex">
+						<input type="checkbox" name="check01" id="check" on:change={resetBtn} />
+						<p>ห้ามกดนะจ๊ะ</p>
+					</div>
+					<div class="flex w-full">
+						<button
+							type="submit"
+							class="w-36 text-gray-600 bg-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+							id="login-b"
+							on:focus={mouseHover}
+							on:mouseover={mouseHover}>Sign in</button
+						>
+					</div>
 				</form>
 			</div>
 		</div>
