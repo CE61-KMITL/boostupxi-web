@@ -1,13 +1,14 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
-	import toast from 'svelte-french-toast';
 	import Editor from '$/components/Editor.svelte';
 	import Loading from '$/components/Loading.svelte';
+	import Result from '$/components/Result.svelte';
 	import type { IQuestionData } from '$/interface/question';
 	import type { ISubmissionsResult } from '$/interface/submission';
 	import { questionService } from '$/services/question.services';
 	import { submissionDataStore, updateSubmissionData } from '$/store/submission';
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+	import toast from 'svelte-french-toast';
 
 	let question: IQuestionData;
 	const id: string = $page.params.id;
@@ -52,6 +53,7 @@
 
 {#if question?.title}
 	<section class="text-white body-font flex justify-center">
+		<audio src="/Success.mp3" id="pass-sound" />
 		<audio src="/Success.mp3" id="success-sound" />
 		<div class="container p-8 mx-auto my-5 glass-lightgray w-11/12 xl:h-[40rem]">
 			<div
@@ -62,7 +64,10 @@
 					<div class="py-3 xl:py-0">
 						<div class="absolute top-5 center-10">
 							{#if submissionResult !== undefined}
-								<h3 class="text-2xl font-bold">{submissionResult.result}</h3>
+								<div class="inline-flex">
+									<h3 class="text-2xl font-bold pr-5">{submissionResult.result}</h3>
+									<Result />
+								</div>
 							{/if}
 						</div>
 						{#if question?.passedByUser}
@@ -102,12 +107,17 @@
 						<h1 class="text-3xl title-font font-medium mb-1">{question?.title}</h1>
 					</div>
 					<div class="xl:w-11/12 flex sm:flex-row flex-col justify-between">
-						<h2 class="text-sm title-font tracking-widest mr-10">
+						<h2 class="text-sm title-font tracking-widest mr-10 mt-2">
 							by {question?.author.username}
 						</h2>
-						<p class="leading-relaxed text-base">
-							{question?.description}
-						</p>
+						<div
+							class="flex px-2 py-1 text-center items-center bg-[#2AAC6E] rounded-xl mx-2 border"
+						>
+							<span class="text-xl font-bold block tracking-wide mr-2">
+								{question.userPassCount}
+							</span>
+							<span class="text-base">Passed</span>
+						</div>
 					</div>
 					<div class="flex flex-col sm:flex-row mt-6 mb-4 sm:w-11/12">
 						<div class="flex">

@@ -1,20 +1,7 @@
-import { writable, type Writable } from 'svelte/store';
+import { initialUser } from '$/constants/user.constants';
 import type { IUser } from '$/interface/user';
 import { userService } from '$/services/user.services';
-
-export const initialUser: IUser = {
-	email: '',
-	username: '',
-	score: 0,
-	role: '',
-	tasks: [],
-	_id: '',
-	group: '',
-	createdAt: '',
-	updatedAt: '',
-	completedQuestionsCount: 0,
-	rank: 0
-};
+import { writable, type Writable } from 'svelte/store';
 
 export const user: Writable<IUser> = writable(initialUser);
 
