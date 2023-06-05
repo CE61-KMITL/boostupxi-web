@@ -29,7 +29,7 @@
 
 <div>
 	<audio src="/Success.mp3" id="success-sound" />
-	<div>
+	<div class="font-title">
 		<nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center text-white">
 			<div class="flex items-center justify-between">
 				<a
@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			<div
-				class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0 text-lg {showMenu
+				class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0 text-base {showMenu
 					? 'flex'
 					: 'hidden'}"
 			>
@@ -68,11 +68,8 @@
 					href="/question">Home</a
 				>
 				{#if !$user}
-					<a
-						class={`hover:text-gray-400 ${
-							$page.url.pathname === '/' && 'text-gray-400'
-						}`}
-						href="/">Login</a
+					<a class={`hover:text-gray-400 ${$page.url.pathname === '/' && 'text-gray-400'}`} href="/"
+						>Login</a
 					>
 				{/if}
 				{#if $user}

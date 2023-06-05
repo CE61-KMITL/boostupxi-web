@@ -76,7 +76,7 @@
 
 			<div class="text-center mt-20">
 				<div class="py-2">
-					<h3 class="font-bold text-2xl mb-1">{userData.username}</h3>
+					<h3 class="font-bold text-2xl mb-1 font-title">{$user.username}</h3>
 					<div class="inline-flex items-center">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
