@@ -138,7 +138,6 @@
 			editor.dispose();
 		};
 	});
-
 </script>
 
 <div class="w-11/12 xl:w-[50rem] h-full flex flex-col">

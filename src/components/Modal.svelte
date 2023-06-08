@@ -9,7 +9,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 
 <div
-	class="w-full h-[100vh] absolute top-0 backdrop-blur-sm anima duration-150"
+	class="w-full h-[100vh] absolute top-0 backdrop-blur-sm anima duration-150 z-10"
 	class:hidden={!showModal}
 >
 	<dialog

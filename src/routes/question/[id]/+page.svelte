@@ -36,7 +36,6 @@
 	};
 
 	onMount(fetchQuestionById);
-
 </script>
 
 {#if question?.title}
@@ -47,7 +46,7 @@
 			<div
 				class="flex max-h-full xl:flex-row flex-col-reverse justify-center xl:items-stretch items-center"
 			>
-				<Editor id={question._id}/>
+				<Editor id={question._id} />
 				<div class="w-full xl:w-1/2 xl:pl-10 xl:py-6 my-4 max-h-full overflow-auto scrollable">
 					<div class="py-3 xl:py-0">
 						{#if question?.passedByUser}
