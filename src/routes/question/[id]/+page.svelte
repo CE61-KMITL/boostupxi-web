@@ -1,25 +1,17 @@
 <script lang="ts">
 	import Editor from '$/components/Editor.svelte';
 	import Loading from '$/components/Loading.svelte';
-	import Result from '$/components/Result.svelte';
 	import type { IQuestionData } from '$/interface/question';
-	import type { ISubmissionsResult } from '$/interface/submission';
 	import { questionService } from '$/services/question.services';
-	import { submissionDataStore, updateSubmissionData } from '$/store/submission';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
 
 	let question: IQuestionData;
 	const id: string = $page.params.id;
-	let submissionResult: ISubmissionsResult;
 
 	const fetchQuestionById = async () => {
 		question = await questionService.getQuestionById(id);
-	};
-
-	const fetchSubmissionResult = async () => {
-		await updateSubmissionData(id);
 	};
 
 	const buyingHint = async () => {
@@ -44,32 +36,19 @@
 	};
 
 	onMount(fetchQuestionById);
-	onMount(fetchSubmissionResult);
-
-	$: {
-		submissionResult = $submissionDataStore;
-	}
 </script>
 
 {#if question?.title}
 	<section class="text-white body-font flex justify-center">
 		<audio src="/Success.mp3" id="pass-sound" />
 		<audio src="/Success.mp3" id="success-sound" />
-		<div class="container p-8 mx-auto my-5 glass-lightgray w-11/12 xl:h-[40rem]">
+		<div class="container p-8 mx-auto my-5 glass-lightgray w-11/12 xl:h-[42rem]">
 			<div
 				class="flex max-h-full xl:flex-row flex-col-reverse justify-center xl:items-stretch items-center"
 			>
 				<Editor id={question._id} />
 				<div class="w-full xl:w-1/2 xl:pl-10 xl:py-6 my-4 max-h-full overflow-auto scrollable">
 					<div class="py-3 xl:py-0">
-						<div class="absolute top-5 center-10">
-							{#if submissionResult !== undefined}
-								<div class="inline-flex">
-									<h3 class="text-2xl font-bold pr-5">{submissionResult.result}</h3>
-									<Result />
-								</div>
-							{/if}
-						</div>
 						{#if question?.passedByUser}
 							<div class="absolute top-3 right-20">
 								<svg

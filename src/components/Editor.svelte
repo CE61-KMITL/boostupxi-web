@@ -1,10 +1,13 @@
 <script lang="ts">
+	import type { ISubmissionsResult } from '$/interface/submission';
 	import { compilerService } from '$/services/compiler.services';
 	import { questionService } from '$/services/question.services';
+	import { submissionDataStore } from '$/store/submission';
 	import type * as Monaco from 'monaco-editor';
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 	import { afterUpdate, onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
+	import Result from './Result.svelte';
 
 	let subscriptions: ((text: string) => void)[] = [];
 	let content: {
@@ -15,36 +18,36 @@
 	let editor: Monaco.editor.IStandaloneCodeEditor;
 	let Monaco;
 	export let id: string;
+	let loadingResult: boolean = false;
 	let loading: boolean = false;
+	let submissionResult: ISubmissionsResult = $submissionDataStore;
 
 	const resizeEditor = () => {
 		editor.layout();
 	};
-
 	const handleSubmit = async () => {
 		loading = true;
+		loadingResult = true;
 		const text = editor.getValue();
 		await compilerService.submitCode(text, id);
 		setTimeout(async () => {
 			const response = await questionService.getSubmission(id);
 			if (response && response.status) {
-				setTimeout(() => {
-					window.location.reload();
-				}, 1500);
 				toast.success('ยินดีด้วยน้องผ่านแล้ว เก่งมากๆๆ');
 				const sound = document.getElementById('pass-sound') as HTMLAudioElement;
 				sound.play();
+				submissionDataStore.set(response);
+				loadingResult = false;
 				loading = false;
 			} else if (response && !response.status) {
-				setTimeout(() => {
-					window.location.reload();
-				}, 1500);
 				toast.error('ยังถูกไม่หมดน้า ลองใหม่ๆๆ');
 				const sound = document.getElementById('fail-sound') as HTMLAudioElement;
 				sound.play();
+				submissionDataStore.set(response);
+				loadingResult = false;
 				loading = false;
 			}
-		}, 8000);
+		}, 4000);
 	};
 
 	$: onMount(async () => {
@@ -140,6 +143,16 @@
 <div class="w-11/12 xl:w-[50rem] h-full flex flex-col">
 	<audio src="/pass.mp3" id="pass-sound" />
 	<audio src="/fail.mp3" id="fail-sound" />
+	{#if loadingResult}
+		<div class="inline-flex">
+			<h3 class="text-2xl font-bold pr-5">Loading...</h3>
+		</div>
+	{:else if $submissionDataStore.result !== undefined}
+		<div class="inline-flex">
+			<h3 class="text-2xl font-bold pr-5">{$submissionDataStore.result}</h3>
+			<Result />
+		</div>
+	{/if}
 	<div bind:this={divEl} class="flex container w-full h-[33rem]" />
 	<div class="w-full h-[4rem]">
 		<button
