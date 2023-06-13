@@ -136,7 +136,7 @@
 						</div>
 					</div>
 					<div class="flex">
-						<input type="checkbox" name="check01" id="check" on:change={resetBtn} />
+						<input type="checkbox" name="check01" id="check" on:change={resetBtn} class="mr-2" />
 						<p>ห้ามกดนะจ๊ะ</p>
 					</div>
 					<div class="flex w-full">
