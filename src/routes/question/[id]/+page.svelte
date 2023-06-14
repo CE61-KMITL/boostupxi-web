@@ -2,7 +2,9 @@
 	import Editor from '$/components/Editor.svelte';
 	import Loading from '$/components/Loading.svelte';
 	import Result from '$/components/Result.svelte';
+	import { initialSubmissionData } from '$/constants/submission.constants';
 	import type { IQuestionData } from '$/interface/question';
+	import type { ISubmissionsResult } from '$/interface/submission';
 	import { questionService } from '$/services/question.services';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
@@ -11,15 +13,14 @@
 	let question: IQuestionData;
 	let loadingResult: boolean = false;
 	const id: string = $page.params.id;
-	let result: any = {};
+	let result: ISubmissionsResult = initialSubmissionData;
 
 	const fetchQuestionById = async () => {
 		question = await questionService.getQuestionById(id);
 	};
 
-	$: onMount(async () => {
+	onMount(async () => {
 		result = await questionService.getSubmission(id);
-		console.log(result);
 	});
 
 	const buyingHint = async () => {

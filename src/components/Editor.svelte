@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { initialSubmissionData } from '$/constants/submission.constants';
+	import type { ISubmissionsResult } from '$/interface/submission';
 	import { compilerService } from '$/services/compiler.services';
 	import { questionService } from '$/services/question.services';
 	import { submissionDataStore } from '$/store/submission';
@@ -18,7 +20,7 @@
 	export let id: string;
 	let loadingResult: boolean = false;
 	let loading: boolean = false;
-	let result: any = {};
+	let result: ISubmissionsResult = initialSubmissionData;
 
 	const resizeEditor = () => {
 		editor.layout();
@@ -45,9 +47,20 @@
 				loadingResult = false;
 				loading = false;
 			}
+			setTimeout(() => {
+				window.location.reload();
+			}, 1000);
 		}, 4000);
 	};
-	$: onMount(async () => {
+
+	onMount(async () => {
+		result = await questionService.getSubmission(id);
+		if (result?.source_code) {
+			content.set(result.source_code);
+		}
+	});
+
+	onMount(async () => {
 		self.MonacoEnvironment = {
 			getWorker: function (_moduleId, label) {
 				return new editorWorker();
@@ -84,8 +97,7 @@
 		});
 
 		editor = Monaco.editor.create(divEl, {
-			value:
-				'#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}',
+			value: result.source_code,
 			language: 'c',
 			theme: 'vs-dark',
 			lineNumbers: 'on',
