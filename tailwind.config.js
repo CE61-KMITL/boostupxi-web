@@ -4,7 +4,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				title: 'FC Fast, sans-serif',
+				title: 'Righteous, cursive',
 				content: 'Roboto Condensed, sans-serif'
 			}
 		}
