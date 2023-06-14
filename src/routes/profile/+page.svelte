@@ -1,9 +1,13 @@
 <script lang="ts">
 	import Modal from '$/components/Modal.svelte';
+	import { initialUser } from '$/constants/user.constants';
+	import type { IUser } from '$/interface/user';
 	import { userService } from '$/services/user.services';
-	import { user } from '$/store/user';
+	import { updateUserProfile, user } from '$/store/user';
 	import { generateRankSuffix } from '$/utils/generateRankSuffix';
+	import { onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
+	import { subscribe } from 'svelte/internal';
 
 	let showModal: boolean = false;
 	let loading: boolean = false;
@@ -12,13 +16,14 @@
 	let email: string = $user.email;
 	let password: string;
 	let confirmPassword: string;
+
+	let userData: IUser = initialUser;
 	const handleUpdateProfile = async () => {
 		loading = true;
 		if (password !== confirmPassword) {
 			toast.error('Password and confirm password not match');
 			loading = false;
 		} else {
-			console.log(username, password);
 			const response = await userService.editUserProfile(id, username, password);
 			try {
 				if (response.statusCode === 200) {
@@ -34,6 +39,12 @@
 			}
 		}
 	};
+
+	subscribe(user, (value: IUser) => {
+		userData = value;
+	});
+
+	onMount(updateUserProfile);
 </script>
 
 <div>
@@ -65,7 +76,7 @@
 
 			<div class="text-center mt-20">
 				<div class="py-2">
-					<h3 class="font-bold text-2xl mb-1">{$user.username}</h3>
+					<h3 class="font-bold text-2xl mb-1 font-title">{$user.username}</h3>
 					<div class="inline-flex items-center">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"

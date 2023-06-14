@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import toast from 'svelte-french-toast';
 	import { userService } from '$/services/user.services';
 	import { user } from '$/store/user';
+	import { page } from '$app/stores';
+	import toast from 'svelte-french-toast';
 
 	let showMenu: boolean = false;
 
@@ -29,7 +29,7 @@
 
 <div>
 	<audio src="/Success.mp3" id="success-sound" />
-	<div>
+	<div class="font-title">
 		<nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center text-white">
 			<div class="flex items-center justify-between">
 				<a
@@ -38,8 +38,7 @@
 					href="/question"
 					>CE BoostUp-XI Grader
 				</a>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div on:click={toggleNavbar} class="flex md:hidden">
+				<button on:click={toggleNavbar} class="flex md:hidden">
 					<button type="button" class=" hover:text-gray-400 focus:outline-none focus:text-gray-400">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -56,10 +55,10 @@
 							/>
 						</svg>
 					</button>
-				</div>
+				</button>
 			</div>
 			<div
-				class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0 text-lg {showMenu
+				class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0 text-base {showMenu
 					? 'flex'
 					: 'hidden'}"
 			>
@@ -68,11 +67,8 @@
 					href="/question">Home</a
 				>
 				{#if !$user}
-					<a
-						class={`hover:text-gray-400 ${
-							$page.url.pathname === '/' && 'text-gray-400'
-						}`}
-						href="/">Login</a
+					<a class={`hover:text-gray-400 ${$page.url.pathname === '/' && 'text-gray-400'}`} href="/"
+						>Login</a
 					>
 				{/if}
 				{#if $user}

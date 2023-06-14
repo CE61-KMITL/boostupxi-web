@@ -2,7 +2,12 @@
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				title: 'Righteous, cursive',
+				content: 'Roboto Condensed, sans-serif'
+			}
+		}
 	},
 	plugins: []
 };
