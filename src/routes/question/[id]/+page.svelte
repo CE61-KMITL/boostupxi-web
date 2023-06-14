@@ -65,8 +65,8 @@
 								</div>
 							{:else if result?.result !== undefined}
 								<div class="inline-flex">
-									<h3 class="text-2xl font-bold pr-5">{result?.result}</h3>
 									<Result />
+									<h3 class="text-2xl font-boldß ml-5 rounded-xl">Status: {result?.result}</h3>
 								</div>
 							{/if}
 						</div>

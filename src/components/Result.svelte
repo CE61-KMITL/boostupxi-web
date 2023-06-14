@@ -22,10 +22,10 @@
 </button>
 
 <Modal bind:showModal>
-	<div class="flex items-start justify-between p-4 border-b rounded-t">
-		<h3 class="text-xl font-semibold text-gray-900 dark:text-white">Grader Result</h3>
+	<div class="flex items-start justify-between border-b rounded-t">
+		<h3 class="text-xl font-semibold text-gray-900 pb-4">Grader Result</h3>
 	</div>
-	<div class="p-6 space-y-6">
+	<div class="p-6">
 		<div class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
 			<ul>
 				{#each $submissionResultStore as result}
