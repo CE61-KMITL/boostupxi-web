@@ -176,9 +176,9 @@
 			<h3 class="text-2xl font-bold pr-5">Loading...</h3>
 		</div>
 	{:else if $submissionDataStore.result !== undefined}
-		<div class="inline-flex py-2">
+		<div class="inline-flex justify-between py-2">
 			<Result />
-			<h3 class="text-2xl font-bold pr-5">{$submissionDataStore.result}</h3>
+			<h3 class="text-2xl font-bold px-2 bg-neutral-900 bg-opacity-20 rounded-lg">{$submissionDataStore.result}</h3>
 		</div>
 	{/if}
 	<div bind:this={divEl} class="flex container w-full h-[33rem]" />
