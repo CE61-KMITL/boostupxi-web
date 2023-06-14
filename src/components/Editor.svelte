@@ -79,6 +79,25 @@
 				]
 			}
 		});
+
+		Monaco.languages.setLanguageConfiguration('c', {
+			comments: {
+				lineComment: '//',
+				blockComment: ['/*', '*/']
+			},
+			brackets: [
+				['{', '}'],
+				['[', ']'],
+				['(', ')']
+			],
+			autoClosingPairs: [
+				{ open: '{', close: '}' },
+				{ open: '[', close: ']' },
+				{ open: '(', close: ')' },
+				{ open: '"', close: '"', notIn: ['string'] }
+			]
+		});
+
 		Monaco.editor.defineTheme('vs-dark', {
 			base: 'vs-dark',
 			inherit: true,
@@ -117,7 +136,12 @@
 
 		editor.updateOptions({
 			fontFamily: 'Courier New, monospace',
-			fontSize: 14,
+			padding: {
+				top: 20,
+				bottom: 10
+			},
+			fontLigatures: true,
+			fontSize: 16,
 			fontWeight: 'normal',
 			lineHeight: 20,
 			letterSpacing: 0,
@@ -127,7 +151,11 @@
 			scrollbar: {
 				vertical: 'auto',
 				horizontal: 'auto'
-			}
+			},
+			minimap: {
+				enabled: false
+			},
+			overviewRulerLanes: 0
 		});
 
 		afterUpdate(() => {
@@ -148,9 +176,9 @@
 			<h3 class="text-2xl font-bold pr-5">Loading...</h3>
 		</div>
 	{:else if $submissionDataStore.result !== undefined}
-		<div class="inline-flex">
-			<h3 class="text-2xl font-bold pr-5">{$submissionDataStore.result}</h3>
+		<div class="inline-flex py-2">
 			<Result />
+			<h3 class="text-2xl font-bold pr-5">{$submissionDataStore.result}</h3>
 		</div>
 	{/if}
 	<div bind:this={divEl} class="flex container w-full h-[33rem]" />
