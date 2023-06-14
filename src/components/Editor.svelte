@@ -1,13 +1,11 @@
 <script lang="ts">
-	import type { ISubmissionsResult } from '$/interface/submission';
 	import { compilerService } from '$/services/compiler.services';
 	import { questionService } from '$/services/question.services';
 	import { submissionDataStore } from '$/store/submission';
 	import type * as Monaco from 'monaco-editor';
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
-	import { afterUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
-	import Result from './Result.svelte';
 
 	let subscriptions: ((text: string) => void)[] = [];
 	let content: {
@@ -20,7 +18,7 @@
 	export let id: string;
 	let loadingResult: boolean = false;
 	let loading: boolean = false;
-	let submissionResult: ISubmissionsResult = $submissionDataStore;
+	let result: any = {};
 
 	const resizeEditor = () => {
 		editor.layout();
@@ -49,7 +47,6 @@
 			}
 		}, 4000);
 	};
-
 	$: onMount(async () => {
 		self.MonacoEnvironment = {
 			getWorker: function (_moduleId, label) {
@@ -130,10 +127,6 @@
 			}
 		});
 
-		afterUpdate(() => {
-			resizeEditor();
-		});
-
 		return () => {
 			editor.dispose();
 		};
@@ -143,16 +136,6 @@
 <div class="w-11/12 xl:w-[50rem] h-full flex flex-col">
 	<audio src="/pass.mp3" id="pass-sound" />
 	<audio src="/fail.mp3" id="fail-sound" />
-	{#if loadingResult}
-		<div class="inline-flex">
-			<h3 class="text-2xl font-bold pr-5">Loading...</h3>
-		</div>
-	{:else if $submissionDataStore.result !== undefined}
-		<div class="inline-flex">
-			<h3 class="text-2xl font-bold pr-5">{$submissionDataStore.result}</h3>
-			<Result />
-		</div>
-	{/if}
 	<div bind:this={divEl} class="flex container w-full h-[33rem]" />
 	<div class="w-full h-[4rem]">
 		<button
