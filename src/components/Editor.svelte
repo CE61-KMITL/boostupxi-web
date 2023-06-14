@@ -1,13 +1,13 @@
 <script lang="ts">
+	import { initialSubmissionData } from '$/constants/submission.constants';
 	import type { ISubmissionsResult } from '$/interface/submission';
 	import { compilerService } from '$/services/compiler.services';
 	import { questionService } from '$/services/question.services';
 	import { submissionDataStore } from '$/store/submission';
 	import type * as Monaco from 'monaco-editor';
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
-	import { afterUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
-	import Result from './Result.svelte';
 
 	let subscriptions: ((text: string) => void)[] = [];
 	let content: {
@@ -20,7 +20,7 @@
 	export let id: string;
 	let loadingResult: boolean = false;
 	let loading: boolean = false;
-	let submissionResult: ISubmissionsResult = $submissionDataStore;
+	let result: ISubmissionsResult = initialSubmissionData;
 
 	const resizeEditor = () => {
 		editor.layout();
@@ -47,10 +47,24 @@
 				loadingResult = false;
 				loading = false;
 			}
+			setTimeout(() => {
+				window.location.reload();
+			}, 1000);
 		}, 4000);
 	};
 
-	$: onMount(async () => {
+	onMount(async () => {
+		result = await questionService.getSubmission(id);
+		if (result?.source_code) {
+			content.set(result.source_code);
+		} else {
+			content.set(
+				`#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}`
+			);
+		}
+	});
+
+	onMount(async () => {
 		self.MonacoEnvironment = {
 			getWorker: function (_moduleId, label) {
 				return new editorWorker();
@@ -106,8 +120,7 @@
 		});
 
 		editor = Monaco.editor.create(divEl, {
-			value:
-				'#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}',
+			value: result.source_code,
 			language: 'c',
 			theme: 'vs-dark',
 			lineNumbers: 'on',
@@ -156,10 +169,6 @@
 				enabled: false
 			},
 			overviewRulerLanes: 0
-		});
-
-		afterUpdate(() => {
-			resizeEditor();
 		});
 
 		return () => {
