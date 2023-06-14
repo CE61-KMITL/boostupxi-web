@@ -57,6 +57,10 @@
 		result = await questionService.getSubmission(id);
 		if (result?.source_code) {
 			content.set(result.source_code);
+		} else {
+			content.set(
+				`#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}`
+			);
 		}
 	});
 
