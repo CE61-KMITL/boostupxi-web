@@ -86,8 +86,8 @@
 						{/if}
 					</div>
 					<div class="space-y-4 mt-8">
-						<div class="flex justify-between">
-							<h1 class="text-3xl font-bold">
+						<div class="flex flex-wrap justify-between items-center">
+							<h1 class="text-3xl font-bold overflow-hidden">
 								{question?.title}
 							</h1>
 							<div class="flex">
