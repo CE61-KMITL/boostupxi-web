@@ -110,7 +110,7 @@
 				{ open: '[', close: ']' },
 				{ open: '(', close: ')' },
 				{ open: '"', close: '"', notIn: ['string'] }
-			]
+			],
 		});
 
 		editor = Monaco.editor.create(divEl, {
@@ -143,9 +143,6 @@
 			minimap: {
 				enabled: false
 			},
-			overviewRulerLanes: 0,
-			hideCursorInOverviewRuler: true,
-			roundedSelection: true
 		});
 
 		editor.onDidChangeModelContent(() => {
