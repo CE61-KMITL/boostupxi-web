@@ -170,7 +170,6 @@
 							{#each question?.testcases ?? [] as testcases, index}
 								{#if testcases.published}
 									<div>
-										<h2>Test Case #{index + 1}</h2>
 										<div class="glass-gray flex w-full justify-evenly p-3 mt-1 space-x-2">
 											<div class="w-1/2 flex flex-col">
 												<p class="text-sm">
