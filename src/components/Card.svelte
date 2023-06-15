@@ -7,25 +7,29 @@
 		userPass: boolean;
 </script>
 
-<a href={`/question/${id}`}>
-	<div class="w-[23rem] p-6 glass border border-gray-200 rounded-lg text-white cursor-pointer">
-		<div class="flex items-center flex-row {userPass ? 'justify-between' : 'justify-end'}">
-			{#if userPass}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="w-6 h-6 text-white border bg-[#2AAC6E] border-[#2AAC6E] rounded-full"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-					/>
-				</svg>
-			{/if}
+<a class="group" href={`/question/${id}`}>
+	<div
+		class={`relative w-[23rem] p-6 bg-opacity-60 ring-1  ${
+			userPass ? 'bg-green-600 ring-green-400' : 'glass'
+		} rounded-2xl text-white cursor-pointer  ring-4 group-hover:shadow-xl group-hover:ring-white transition-all group-hover:bg-gray-800 group-hover:bg-opacity-60`}
+	>
+		{#if userPass}
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="absolute w-8 h-8 -right-3 -top-3 z-20 text-white bg-[#2AAC6E] border border-green-300 rounded-full"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+				/>
+			</svg>
+		{/if}
+		<div class="flex items-center flex-row justify-end">
 			<div class="flex">
 				{#each Array(level) as _, i}
 					<div class="">
@@ -45,16 +49,16 @@
 			</div>
 		</div>
 		<h5
-			class="mb-2 text-3xl font-bold tracking-tight text-ellipsis whitespace-nowrap w-72 overflow-hidden"
+			class="mb-2 group-hover:text-gray-50 text-2xl font-bold tracking-tight text-ellipsis whitespace-nowrap w-72 overflow-hidden"
 			style="text-shadow: 2px 2px 4px gray;"
 		>
 			{title}
 		</h5>
-		<div class="w-full flex justify-between my-2 mt-6">
-			<p class="inline-flex items-center hover:underline">
+		<div class="w-full flex justify-between mt-6">
+			<p class="inline-flex items-center group-hover:text-gray-200 text-sm tracking-widest">
 				by {author}
 			</p>
-			<div class="flex px-4 py-2 text-center items-center bg-[#2AAC6E] rounded-xl mx-2 border">
+			<div class="flex px-3 py-1 text-center items-center bg-green-400 bg-opacity-90 rounded-xl border">
 				<span class="text-xl font-bold block tracking-wide mr-2"> {userPassCount} </span>
 				<span class="text-base">Passed</span>
 			</div>

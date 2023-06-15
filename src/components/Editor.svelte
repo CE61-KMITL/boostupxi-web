@@ -123,6 +123,7 @@
 			quickSuggestions: true,
 			wordBasedSuggestions: true,
 			ariaLabel: 'CE-BoostUp#XI',
+			selectOnLineNumbers: true,
 			padding: {
 				top: 20,
 				bottom: 10
@@ -130,7 +131,7 @@
 			fontLigatures: true,
 			fontSize: 20,
 			fontWeight: 'normal',
-			lineHeight: 20,
+			lineHeight: 25,
 			letterSpacing: 0,
 			cursorStyle: 'line',
 			readOnly: false,
@@ -142,7 +143,9 @@
 			minimap: {
 				enabled: false
 			},
-			overviewRulerLanes: 0
+			overviewRulerLanes: 0,
+			hideCursorInOverviewRuler: true,
+			roundedSelection: true
 		});
 
 		editor.onDidChangeModelContent(() => {
