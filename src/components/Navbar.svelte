@@ -36,7 +36,7 @@
 					class="text-xl font-bold md:text-3xl"
 					style="text-shadow: 2px 2px 1px black;"
 					href="/question"
-					>CE Boost Up<span class="text-red-500">#XI</span>
+					>CE Boost Up<span class="text-indigo-500">#XI</span>
 				</a>
 				<button on:click={toggleNavbar} class="flex md:hidden">
 					<button type="button" class=" hover:text-gray-400 focus:outline-none focus:text-gray-400">
