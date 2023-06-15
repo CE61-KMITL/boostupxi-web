@@ -25,7 +25,8 @@
 	const resizeEditor = () => {
 		editor.layout();
 	};
-	const handleSubmit = async () => {
+	const handleSubmit = async (e: Event) => {
+		e.preventDefault();
 		loading = true;
 		loadingResult = true;
 		const text = editor.getValue();
@@ -112,13 +113,6 @@
 			]
 		});
 
-		Monaco.editor.defineTheme('vs-dark', {
-			base: 'vs-dark',
-			inherit: true,
-			rules: [],
-			colors: {}
-		});
-
 		editor = Monaco.editor.create(divEl, {
 			value: result.source_code,
 			language: 'c',
@@ -127,7 +121,28 @@
 			automaticLayout: true,
 			suggestOnTriggerCharacters: true,
 			quickSuggestions: true,
-			wordBasedSuggestions: true
+			wordBasedSuggestions: true,
+			ariaLabel: 'CE-BoostUp#XI',
+			padding: {
+				top: 20,
+				bottom: 10
+			},
+			fontLigatures: true,
+			fontSize: 20,
+			fontWeight: 'normal',
+			lineHeight: 20,
+			letterSpacing: 0,
+			cursorStyle: 'line',
+			readOnly: false,
+			cursorBlinking: 'blink',
+			scrollbar: {
+				vertical: 'auto',
+				horizontal: 'auto'
+			},
+			minimap: {
+				enabled: false
+			},
+			overviewRulerLanes: 0
 		});
 
 		editor.onDidChangeModelContent(() => {
@@ -146,30 +161,6 @@
 				editor.setValue(val);
 			}
 		};
-
-		editor.updateOptions({
-			fontFamily: 'Courier New, monospace',
-			padding: {
-				top: 20,
-				bottom: 10
-			},
-			fontLigatures: true,
-			fontSize: 16,
-			fontWeight: 'normal',
-			lineHeight: 20,
-			letterSpacing: 0,
-			cursorStyle: 'line',
-			readOnly: false,
-			cursorBlinking: 'blink',
-			scrollbar: {
-				vertical: 'auto',
-				horizontal: 'auto'
-			},
-			minimap: {
-				enabled: false
-			},
-			overviewRulerLanes: 0
-		});
 
 		return () => {
 			editor.dispose();

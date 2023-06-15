@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<h5
-			class="mb-2 text-2xl tracking-tight font-title text-ellipsis whitespace-nowrap w-72 overflow-hidden"
+			class="mb-2 text-3xl font-bold tracking-tight text-ellipsis whitespace-nowrap w-72 overflow-hidden"
 			style="text-shadow: 2px 2px 4px gray;"
 		>
 			{title}

@@ -23,7 +23,8 @@
 		result = await questionService.getSubmission(id);
 	});
 
-	const buyingHint = async () => {
+	const buyingHint = async (e: Event) => {
+		e.preventDefault();
 		const response = await questionService.buyingHint(id);
 		if (response.status === 200) {
 			toast
@@ -122,31 +123,20 @@
 							<span class="mr-3">Tags</span>
 							{#each question?.tags ?? [] as tag}
 								<span
-									class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold text-indigo-100 bg-indigo-700 rounded-full"
+									class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold text-indigo-100 bg-indigo-600 rounded-full"
 								>
 									{tag}
 								</span>
 							{/each}
 						</div>
 						<div class="glass p-4">
-							<p class="text-sm leading-relaxed">
+							<p class="text-md font-medium leading-relaxed">
 								{question?.description}
 							</p>
 						</div>
-						<div>
-							{#if question?.files.length > 0}
-								{#each question?.files as file}
-									<a href={file.url} class="text-indigo-500" download>
-										<p>
-											[Click To Download]: {file.url.split('/').pop()}
-										</p>
-									</a>
-								{/each}
-							{/if}
-						</div>
 						{#if question.hasHint}
 							{#if question.hint}
-								<div class="glass text-sm px-4 py-2">
+								<div class="glass text-md px-4 py-2">
 									<p class="leading-relaxed">
 										Hint: {question.hint}
 									</p>
@@ -154,11 +144,22 @@
 							{:else}
 								<button
 									type="button"
-									class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2"
+									class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2"
 									on:click={buyingHint}>Buy hint</button
 								>
 							{/if}
 						{/if}
+						<div>
+							{#if question?.files.length > 0}
+								{#each question?.files as file}
+									<a href={file.url} class="text-indigo-300" download>
+										<p>
+											[Click To Download]: {file.url.split('/').pop()}
+										</p>
+									</a>
+								{/each}
+							{/if}
+						</div>
 						<div class="text-white flex flex-col space-y-4">
 							{#each question?.testcases ?? [] as testcases, index}
 								{#if testcases.published}

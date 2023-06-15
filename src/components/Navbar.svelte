@@ -29,14 +29,14 @@
 
 <div>
 	<audio src="/Success.mp3" id="success-sound" />
-	<div class="font-title">
+	<div>
 		<nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center text-white">
 			<div class="flex items-center justify-between">
 				<a
 					class="text-xl font-bold md:text-3xl"
 					style="text-shadow: 2px 2px 1px black;"
 					href="/question"
-					>CE BoostUp-XI Grader
+					>CE-Boost Up<span class="text-red-500">#XI</span>
 				</a>
 				<button on:click={toggleNavbar} class="flex md:hidden">
 					<button type="button" class=" hover:text-gray-400 focus:outline-none focus:text-gray-400">
@@ -63,27 +63,27 @@
 					: 'hidden'}"
 			>
 				<a
-					class={`hover:text-gray-400 ${$page.url.pathname === '/question' && 'text-gray-400'}`}
+					class={`hover:text-gray-400 ${$page.url.pathname === '/question' && 'border-b-2 border-gray-400'}`}
 					href="/question">Home</a
 				>
 				{#if !$user}
-					<a class={`hover:text-gray-400 ${$page.url.pathname === '/' && 'text-gray-400'}`} href="/"
+					<a class={`hover:text-gray-400 ${$page.url.pathname === '/' && 'border-b-2 border-gray-400'}`} href="/"
 						>Login</a
 					>
 				{/if}
 				{#if $user}
 					<a
 						class={`hover:text-gray-400 ${
-							$page.url.pathname === '/leaderboard' && 'text-gray-400'
+							$page.url.pathname === '/leaderboard' && 'border-b-2 border-gray-400'
 						}`}
 						href="/leaderboard">Leaderboard</a
 					>
 					<a
-						class={`hover:text-gray-400 ${$page.url.pathname === '/guide' && 'text-gray-400'}`}
+						class={`hover:text-gray-400 ${$page.url.pathname === '/guide' && 'border-b-2 border-gray-400'}`}
 						href="/guide">Guide</a
 					>
 					<a
-						class={`hover:text-gray-400 ${$page.url.pathname === '/profile' && 'text-gray-400'}`}
+						class={`hover:text-gray-400 ${$page.url.pathname === '/profile' && 'border-b-2 border-gray-400'}`}
 						href="/profile">Profile</a
 					>
 					<button class="hover:text-gray-400" on:click={logout}>Logout</button>
