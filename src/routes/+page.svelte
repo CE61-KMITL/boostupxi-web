@@ -1,6 +1,6 @@
 <script lang="ts">
-	import toast from 'svelte-french-toast';
 	import { userService } from '$/services/user.services';
+	import toast from 'svelte-french-toast';
 
 	let email: string = '';
 	let password: string = '';
@@ -150,6 +150,29 @@
 					</div>
 				</form>
 			</div>
+		</div>
+		<div class="absolute bottom-0 mb-3 text-center text-sm font-medium text-white">
+			<p>
+				Made by{' '}
+				<a
+					class="hover:text-green-300"
+					target="_blank"
+					rel="noopener noreferer"
+					href="https://github.com/deviate-team"
+				>
+					Deviate Team
+				</a>{' '}
+				x{' '}
+				<a
+					class="hover:text-green-300"
+					target="_blank"
+					rel="noopener noreferer"
+					href="https://github.com/CE61-KMITL"
+				>
+					CE61 @KMITL
+				</a>
+				❤️
+			</p>
 		</div>
 	</div>
 </section>

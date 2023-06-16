@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { fetchLeaderboardData } from '$/store/leaderboard';
 	import { fetchQuestionData } from '$/store/question';
+	import { onMount } from 'svelte';
 
 	export let page: number;
 	export let totalPages: number;
 	export let fetchBy: string;
 
-	const fetchData = async () => {
+	const fetchData = async (): Promise<void> => {
 		if (fetchBy === 'question') {
 			await fetchQuestionData(page);
 		} else if (fetchBy === 'leaderboard') {
@@ -16,9 +16,13 @@
 	};
 
 	onMount(fetchData);
-
 	const goToPage = (newPage: number) => {
 		page = newPage;
+		if (fetchBy === 'question') {
+			window.sessionStorage.setItem('questionNumberPage', page.toString());
+		} else if (fetchBy === 'leaderboard') {
+			window.sessionStorage.setItem('leaderboardNumberPage', page.toString());
+		}
 		fetchData();
 	};
 </script>

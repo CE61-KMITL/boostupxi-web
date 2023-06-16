@@ -4,7 +4,7 @@
 			<h1
 				class="focus:outline-none xl:text-4xl text-3xl text-center text-white font-extrabold pt-4 font-title"
 			>
-				Sponsored by 
+				Sponsored by
 			</h1>
 		</div>
 		<div class="py-2 lg:px-32 lg:pt-12 flex justify-center">

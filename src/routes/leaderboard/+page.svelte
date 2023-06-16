@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Loading from '$/components/Loading.svelte';
 	import Pagination from '$/components/Pagination.svelte';
 	import TopCard from '$/components/TopCard.svelte';
@@ -12,10 +11,13 @@
 		leaderboardPage
 	} from '$/store/leaderboard';
 	import { user } from '$/store/user';
+	import { onMount } from 'svelte';
 
 	let leaderboardData: ILeaderboardData[] = [];
 	let leaderboardGroupData: ILeaderboardGroup[] = [];
-	let page: number = 1;
+	let leaderboardNumberPage: string | null = window.sessionStorage.getItem('leaderboardNumberPage');
+
+	let page: number = Number(leaderboardNumberPage);
 	let totalPages: number = 0;
 
 	const fetchLeaderboard = async () => {
@@ -69,7 +71,7 @@
 					</div>
 				{/each}
 			</div>
-			<Pagination page={1} {totalPages} fetchBy="leaderboard" />
+			<Pagination {page} {totalPages} fetchBy="leaderboard" />
 		</div>
 	</section>
 {:else}
