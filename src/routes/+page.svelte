@@ -1,9 +1,15 @@
 <script lang="ts">
 	import { userService } from '$/services/user.services';
+	import Cookies from 'js-cookie';
 	import toast from 'svelte-french-toast';
 
 	let email: string = '';
 	let password: string = '';
+
+	// redirect to question page if user already login
+	if (Cookies.get('token')) {
+		window.location.href = '/question';
+	}
 
 	$: submit = async () => {
 		try {

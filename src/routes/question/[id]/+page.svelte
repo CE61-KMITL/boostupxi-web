@@ -166,9 +166,9 @@
 							{/if}
 						</div>
 						<div class="text-white flex flex-col space-y-4">
-							<h3 class="text-xl font-bold mt-4">Test Cases</h3>
 							{#each question?.testcases ?? [] as testcases, index}
 								{#if testcases.published}
+									<h3 class="text-xl font-bold mt-4">Test Cases</h3>
 									<div>
 										<h2>Test Case #{index + 1}</h2>
 										<div class="glass-gray flex w-full justify-evenly p-3 mt-1 space-x-2">
