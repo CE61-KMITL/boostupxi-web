@@ -28,7 +28,7 @@
 </script>
 
 <div class="w-11/12 justify-end flex">
-	<nav class="inline-flex justify-end mt-10 mb-20 bg-[#303030] rounded-xl">
+	<nav class="inline-flex justify-end mt-10 mb-10 bg-[#303030] rounded-xl">
 		<ul class="inline-flex items-center -space-x-px">
 			<li>
 				<button

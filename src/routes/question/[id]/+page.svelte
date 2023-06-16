@@ -15,13 +15,13 @@
 	const id: string = $page.params.id;
 	let result: ISubmissionsResult = initialSubmissionData;
 
-	const fetchQuestionById = async () => {
+	const fetchQuestionById = async (): Promise<void> => {
 		question = await questionService.getQuestionById(id);
 	};
 
-	onMount(async () => {
+	const getSubmissionResult = async (): Promise<void> => {
 		result = await questionService.getSubmission(id);
-	});
+	};
 
 	const buyingHint = async (e: Event) => {
 		e.preventDefault();
@@ -46,6 +46,7 @@
 	};
 
 	onMount(fetchQuestionById);
+	onMount(getSubmissionResult);
 </script>
 
 {#if question?.title}
@@ -87,7 +88,7 @@
 					</div>
 					<div class="space-y-4 mt-8">
 						<div class="flex flex-wrap justify-between items-center">
-							<h1 class="text-3xl font-bold overflow-hidden">
+							<h1 class=" leading-[80px] text-3xl font-bold overflow-hidden">
 								{question?.title}
 							</h1>
 							<div class="flex">

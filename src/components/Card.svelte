@@ -49,7 +49,7 @@
 			</div>
 		</div>
 		<h5
-			class="mb-2 group-hover:text-gray-50 text-2xl font-bold tracking-tight text-ellipsis whitespace-nowrap w-72 overflow-hidden"
+			class=" leading-[60px] group-hover:text-gray-50 text-2xl font-bold tracking-tight text-ellipsis whitespace-nowrap w-72 overflow-hidden"
 			style="text-shadow: 2px 2px 4px gray;"
 		>
 			{title}
