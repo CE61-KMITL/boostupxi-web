@@ -49,7 +49,7 @@
 </script>
 
 {#if question?.title}
-	<section class="text-white body-font px-4">
+	<section class="text-white px-4">
 		<audio src="/Success.mp3" id="pass-sound" />
 		<audio src="/Success.mp3" id="success-sound" />
 		<div class="container mx-auto glass-lightgray p-8">
@@ -150,7 +150,7 @@
 							{/if}
 						</div>
 						<div class="glass p-4">
-							<p class="text-md font-medium leading-relaxed">
+							<p class="text-md font-medium leading-relaxed whitespace-pre-wrap">
 								{question?.description}
 							</p>
 						</div>
