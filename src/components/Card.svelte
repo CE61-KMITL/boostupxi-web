@@ -58,7 +58,9 @@
 			<p class="inline-flex items-center group-hover:text-gray-200 text-sm tracking-widest">
 				by {author}
 			</p>
-			<div class="flex px-3 py-1 text-center items-center bg-green-400 bg-opacity-90 rounded-xl border">
+			<div
+				class="flex px-3 py-1 text-center items-center bg-green-400 bg-opacity-90 rounded-xl border"
+			>
 				<span class="text-xl font-bold block tracking-wide mr-2"> {userPassCount} </span>
 				<span class="text-base">Passed</span>
 			</div>

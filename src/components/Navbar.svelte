@@ -67,8 +67,11 @@
 					href="/question">Home</a
 				>
 				{#if !$user}
-					<a class={`hover:text-gray-400 ${$page.url.pathname === '/' && 'border-b-2 border-gray-400'}`} href="/"
-						>Login</a
+					<a
+						class={`hover:text-gray-400 ${
+							$page.url.pathname === '/' && 'border-b-2 border-gray-400'
+						}`}
+						href="/">Login</a
 					>
 				{/if}
 				{#if $user}
@@ -79,11 +82,15 @@
 						href="/leaderboard">Leaderboard</a
 					>
 					<a
-						class={`hover:text-gray-400 ${$page.url.pathname === '/guide' && 'border-b-2 border-gray-400'}`}
+						class={`hover:text-gray-400 ${
+							$page.url.pathname === '/guide' && 'border-b-2 border-gray-400'
+						}`}
 						href="/guide">Guide</a
 					>
 					<a
-						class={`hover:text-gray-400 ${$page.url.pathname === '/profile' && 'border-b-2 border-gray-400'}`}
+						class={`hover:text-gray-400 ${
+							$page.url.pathname === '/profile' && 'border-b-2 border-gray-400'
+						}`}
 						href="/profile">Profile</a
 					>
 					<button class="hover:text-gray-400" on:click={logout}>Logout</button>
