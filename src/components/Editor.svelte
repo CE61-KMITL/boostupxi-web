@@ -1,15 +1,15 @@
 <script lang="ts">
+	import Result from '$/components/Result.svelte';
 	import { initialSubmissionData } from '$/constants/submission.constants';
 	import type { ISubmissionsResult } from '$/interface/submission';
 	import { compilerService } from '$/services/compiler.services';
 	import { questionService } from '$/services/question.services';
 	import { submissionDataStore } from '$/store/submission';
-	import { user } from '$/store/user';
+	import { updateUserProfile, user } from '$/store/user';
 	import type * as Monaco from 'monaco-editor';
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 	import { onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
-	import Result from '$/components/Result.svelte';
 
 	let subscriptions: ((text: string) => void)[] = [];
 	let content: {
@@ -51,6 +51,7 @@
 			loadingResult = false;
 			loading = false;
 			result = response;
+			updateUserProfile();
 		}, 3000);
 	};
 
