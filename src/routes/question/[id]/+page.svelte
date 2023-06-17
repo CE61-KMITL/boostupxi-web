@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Editor from '$/components/Editor.svelte';
 	import Loading from '$/components/Loading.svelte';
-	import Result from '$/components/Result.svelte';
 	import { initialSubmissionData } from '$/constants/submission.constants';
 	import type { IQuestionData } from '$/interface/question';
 	import type { ISubmissionsResult } from '$/interface/submission';
@@ -11,7 +10,6 @@
 	import toast from 'svelte-french-toast';
 
 	let question: IQuestionData;
-	let loadingResult: boolean = false;
 	const id: string = $page.params.id;
 	let result: ISubmissionsResult = initialSubmissionData;
 
@@ -37,9 +35,8 @@
 					const sound = document.getElementById('success-sound') as HTMLAudioElement;
 					sound.play();
 				});
-			setTimeout(() => {
-				window.location.reload();
-			}, 800);
+
+			question = await questionService.getQuestionById(id);
 		} else {
 			toast.error('Not Enough Score');
 		}
@@ -55,36 +52,6 @@
 		<div class="container mx-auto glass-lightgray p-8">
 			<div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
 				<div class="overflow-auto lg:max-h-[44em] scrollable lg:pr-4">
-					<div class="flex justify-between items-center">
-						<div class="inline-flex space-x-1">
-							<Result />
-							{#if loadingResult}
-								<h3 class="text-2xl font-bold">Loading...</h3>
-							{:else if result?.result !== undefined}
-								<h3 class="text-2xl rounded-xl uppercase">
-									Result: <span class="bg-black bg-opacity-25 px-2 rounded-md">
-										{result?.result}</span
-									>
-								</h3>
-							{/if}
-						</div>
-						{#if question?.passedByUser}
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								class="w-10 h-10 text-white border bg-[#2AAC6E] border-[#2AAC6E] rounded-full"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-								/>
-							</svg>
-						{/if}
-					</div>
 					<div class="space-y-4 mt-8">
 						<div class="flex flex-wrap justify-between items-center">
 							<h1 class="text-3xl font-bold overflow-hidden">
