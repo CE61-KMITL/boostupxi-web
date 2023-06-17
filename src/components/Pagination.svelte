@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fetchLeaderboardData } from '$/store/leaderboard';
 	import { fetchQuestionData } from '$/store/question';
+	import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
 
 	export let page: number;
@@ -19,9 +20,9 @@
 	const goToPage = (newPage: number) => {
 		page = newPage;
 		if (fetchBy === 'question') {
-			window.sessionStorage.setItem('questionNumberPage', page.toString());
+			Cookies.set('questionNumberPage', page.toString());
 		} else if (fetchBy === 'leaderboard') {
-			window.sessionStorage.setItem('leaderboardNumberPage', page.toString());
+			Cookies.set('leaderboardNumberPage', page.toString());
 		}
 		fetchData();
 	};

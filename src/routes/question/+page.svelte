@@ -1,13 +1,15 @@
 <script lang="ts">
+	import Banner from '$/components/Banner.svelte';
 	import Card from '$/components/Card.svelte';
 	import Loading from '$/components/Loading.svelte';
 	import Pagination from '$/components/Pagination.svelte';
 	import type { IQuestionData } from '$/interface/question';
 	import { fetchQuestionData, questionDataStore, questionPage } from '$/store/question';
+	import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
 
 	let questionData: IQuestionData[] = [];
-	let questionNumberPage: string | null = window.sessionStorage.getItem('questionNumberPage');
+	let questionNumberPage: string | undefined = Cookies.get('questionNumberPage');
 
 	let page: number = Number(questionNumberPage);
 	let totalPages: number = 0;

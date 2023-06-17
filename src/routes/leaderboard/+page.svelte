@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Banner from '$/components/Banner.svelte';
 	import Loading from '$/components/Loading.svelte';
 	import Pagination from '$/components/Pagination.svelte';
 	import TopCard from '$/components/TopCard.svelte';
@@ -11,11 +12,12 @@
 		leaderboardPage
 	} from '$/store/leaderboard';
 	import { user } from '$/store/user';
+	import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
 
 	let leaderboardData: ILeaderboardData[] = [];
 	let leaderboardGroupData: ILeaderboardGroup[] = [];
-	let leaderboardNumberPage: string | null = window.sessionStorage.getItem('leaderboardNumberPage');
+	let leaderboardNumberPage: string | undefined = Cookies.get('leaderboardNumberPage');
 
 	let page: number = Number(leaderboardNumberPage);
 	let totalPages: number = 0;

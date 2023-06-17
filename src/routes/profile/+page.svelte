@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Banner from '$/components/Banner.svelte';
 	import Modal from '$/components/Modal.svelte';
 	import { initialUser } from '$/constants/user.constants';
 	import type { IUser } from '$/interface/user';
@@ -137,7 +138,7 @@
 				<input
 					type="text"
 					name="username"
-					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
 					bind:value={username}
 					required
 				/>
@@ -169,7 +170,7 @@
 				<input
 					type="password"
 					name="password"
-					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
 					bind:value={password}
 				/>
 			</div>
@@ -183,7 +184,7 @@
 				<input
 					type="password"
 					name="confirm-password"
-					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
 					bind:value={confirmPassword}
 				/>
 			</div>
@@ -214,3 +215,5 @@
 		</div>
 	</form>
 </Modal>
+
+<Banner />

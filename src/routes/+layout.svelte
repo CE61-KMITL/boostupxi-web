@@ -9,9 +9,14 @@
 	import { Toaster } from 'svelte-french-toast';
 
 	let initialLoad: boolean = true;
+	let showBanner: boolean = true;
 
-	const loading = () => {
+	const loading = (): void => {
 		initialLoad = false;
+	};
+
+	const closeฺBanner = (): void => {
+		showBanner = false;
 	};
 
 	onMount(loading);

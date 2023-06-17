@@ -1,3 +1,7 @@
+<script lang="ts">
+	import Banner from '$/components/Banner.svelte';
+</script>
+
 <div class="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 text-white">
 	<h2 class="w-11/12 font-bold text-2xl">About</h2>
 	<div class="flex lg:flex-row flex-col-reverse justify-around lg:items-start items-center">
@@ -17,3 +21,4 @@
 		/>
 	</div>
 </div>
+<Banner />

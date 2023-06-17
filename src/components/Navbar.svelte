@@ -33,10 +33,10 @@
 		<nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center text-white">
 			<div class="flex items-center justify-between">
 				<a
-					class="text-xl font-bold md:text-3xl"
+					class="text-xl font-bold md:text-3xl uppercase"
 					style="text-shadow: 2px 2px 1px black;"
 					href="/question"
-					>CE Boost Up<span class="text-indigo-500">#XI</span>
+					>CE BoostUp <span class="text-red-500">XI</span>
 				</a>
 				<button on:click={toggleNavbar} class="flex md:hidden">
 					<button type="button" class=" hover:text-gray-400 focus:outline-none focus:text-gray-400">

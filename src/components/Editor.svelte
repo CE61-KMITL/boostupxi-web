@@ -15,6 +15,7 @@
 		subscribe: (func: (text: string) => void) => () => void;
 		set: (val: string) => void;
 	};
+
 	let divEl: HTMLDivElement;
 	let editor: Monaco.editor.IStandaloneCodeEditor;
 	let Monaco;
@@ -23,9 +24,6 @@
 	let loading: boolean = false;
 	let result: ISubmissionsResult = initialSubmissionData;
 
-	const resizeEditor = () => {
-		editor.layout();
-	};
 	const handleSubmit = async (e: Event) => {
 		e.preventDefault();
 		loading = true;
@@ -57,17 +55,6 @@
 			}, 1000);
 		}, 4000);
 	};
-
-	onMount(async () => {
-		result = await questionService.getSubmission(id);
-		if (result?.source_code === undefined) {
-			content.set(
-				`#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}`
-			);
-		} else {
-			content.set(result?.source_code);
-		}
-	});
 
 	onMount(async () => {
 		self.MonacoEnvironment = {
@@ -161,10 +148,17 @@
 					subscriptions = subscriptions.filter((sub) => sub !== func);
 				};
 			},
+
 			set(val) {
 				editor.setValue(val);
 			}
 		};
+
+		result = await questionService.getSubmission(id);
+		content.set(
+			result?.source_code ||
+				`#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}`
+		);
 
 		return () => {
 			editor.dispose();
@@ -204,9 +198,3 @@
 		{/if}
 	</button>
 </div>
-
-<svelte:window
-	on:resize={() => {
-		resizeEditor();
-	}}
-/>
