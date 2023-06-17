@@ -73,9 +73,12 @@
 				]
 			}
 		});
+		result = await questionService.getSubmission(id);
 
 		editor = Monaco.editor.create(divEl, {
-			value: result.source_code,
+			value:
+				result.source_code ||
+				`#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}`,
 			language: 'c',
 			theme: 'vs-dark',
 			automaticLayout: false,
@@ -94,9 +97,6 @@
 				enabled: false
 			}
 		});
-
-		result = await questionService.getSubmission(id);
-		editor.setValue(result?.source_code || `#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}`);
 	});
 
 	onDestroy(() => {
