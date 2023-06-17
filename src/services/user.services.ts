@@ -10,8 +10,8 @@ export const userService = {
 			});
 			const token = response.headers.authorization;
 			Cookies.set('token', token);
-			window.sessionStorage.setItem('questionNumberPage', '1');
-			window.sessionStorage.setItem('leaderboardNumberPage', '1');
+			Cookies.set('questionNumberPage', '1');
+			Cookies.set('leaderboardNumberPage', '1');
 			setTimeout(() => {
 				window.location.href = '/question';
 			}, 1000);

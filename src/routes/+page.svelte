@@ -6,12 +6,11 @@
 	let email: string = '';
 	let password: string = '';
 
-	// redirect to question page if user already login
 	if (Cookies.get('token')) {
 		window.location.href = '/question';
 	}
 
-	$: submit = async () => {
+	$: submit = async (): Promise<void> => {
 		try {
 			toast
 				.promise(userService.login(email, password), {

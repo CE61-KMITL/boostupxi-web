@@ -4,6 +4,7 @@
 	import { compilerService } from '$/services/compiler.services';
 	import { questionService } from '$/services/question.services';
 	import { submissionDataStore } from '$/store/submission';
+	import { user } from '$/store/user';
 	import type * as Monaco from 'monaco-editor';
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 	import { onMount } from 'svelte';
@@ -30,6 +31,9 @@
 		loading = true;
 		loadingResult = true;
 		const text = editor.getValue();
+		if ($user?.role !== 'user') {
+			toast.error('คิดจะส่งหรอ ไม่ใช่น้องนะ');
+		}
 		await compilerService.submitCode(text, id);
 		setTimeout(async () => {
 			const response = await questionService.getSubmission(id);
