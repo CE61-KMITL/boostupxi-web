@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Banner from '$/components/Banner.svelte';
 	import Modal from '$/components/Modal.svelte';
 	import { initialUser } from '$/constants/user.constants';
 	import type { IUser } from '$/interface/user';
@@ -215,5 +214,3 @@
 		</div>
 	</form>
 </Modal>
-
-<Banner />
