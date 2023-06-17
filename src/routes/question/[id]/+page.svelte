@@ -131,10 +131,17 @@
 						<div>
 							{#if question?.files.length > 0}
 								{#each question?.files as file}
-									<a href={file.url} class="text-indigo-300" download>
-										<p>
-											[Click To Download]: {file.url.split('/').pop()}
-										</p>
+									{#if file.url.includes('.png') || file.url.includes('.jpg') || file.url.includes('.jpeg')}
+										<div class="w-full flex flex-col items-center">
+											<img
+												src={file.url}
+												alt="image"
+												class="w-full border border-white rounded-lg"
+											/>
+										</div>
+									{/if}
+									<a href={file.url} class="text-sm text-indigo-300 text-center mt-2">
+										[Click to Download] {file.url.split('/')[file.url.split('/').length - 1]}
 									</a>
 								{/each}
 							{/if}
