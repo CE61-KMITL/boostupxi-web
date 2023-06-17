@@ -166,13 +166,16 @@
 	<div class="flex justify-between items-center mb-2">
 		<div class="inline-flex space-x-1">
 			<Result />
-			{#if loadingResult}
-				<h3 class="text-2xl font-bold">Loading...</h3>
-			{:else if result?.result !== undefined}
-				<h3 class="text-2xl rounded-xl uppercase">
-					Result: <span class="bg-black bg-opacity-25 px-2 rounded-md"> {result?.result}</span>
-				</h3>
-			{/if}
+			<h3 class="text-2xl rounded-xl uppercase">
+				Result:
+				{#if loadingResult}
+					<span class="text-2xl font-bold">Loading...</span>
+				{:else if result?.result}
+					<span class="bg-black bg-opacity-25 px-2 rounded-md">{result?.result}</span>
+				{:else}
+					<span class="px-2 text-sm underline">กดส่งคำตอบเพื่อรับผลลัพธ์</span>
+				{/if}
+			</h3>
 		</div>
 	</div>
 
