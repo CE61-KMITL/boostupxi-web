@@ -147,38 +147,40 @@
 							{/if}
 						</div>
 						<div class="text-white flex flex-col space-y-4">
-							<h3 class="text-xl font-bold mt-4">Test Cases</h3>
-							{#each question?.testcases ?? [] as testcases, index}
-								{#if testcases.published}
-									<div>
-										<h2>Test Case #{index + 1}</h2>
-										<div class="glass-gray flex w-full justify-evenly p-3 mt-1 space-x-2">
-											<div class="w-1/2 flex flex-col">
-												<p class="text-sm">
-													Input {index + 1}
-												</p>
-												<code
-													class="mt-1 h-20 overflow-auto whitespace-pre-wrap rounded-md bg-neutral-800 px-2 py-2 text-base text-gray-100 scrollable"
-												>
-													{testcases.input ? testcases.input : 'No Input'}
-												</code>
-											</div>
-											<div class="w-1/2 flex flex-col">
-												<p class="text-sm">
-													Output {index + 1}
-												</p>
-												<code
-													class={`mt-1 h-20 overflow-y-scroll whitespace-pre-wrap rounded-md bg-neutral-800 px-2 py-2 text-base text-gray-100 scrollable`}
-												>
-													{testcases.output ? testcases.output : 'No Output'}
-												</code>
+							{#if question?.testcases.length > 0}
+								<h3 class="text-xl font-bold mt-4">Test Cases</h3>
+								{#each question?.testcases ?? [] as testcases, index}
+									{#if testcases.published}
+										<div>
+											<h2>Test Case #{index + 1}</h2>
+											<div class="glass-gray flex w-full justify-evenly p-3 mt-1 space-x-2">
+												<div class="w-1/2 flex flex-col">
+													<p class="text-sm">
+														Input {index + 1}
+													</p>
+													<code
+														class="mt-1 h-20 overflow-auto whitespace-pre-wrap rounded-md bg-neutral-800 px-2 py-2 text-base text-gray-100 scrollable"
+													>
+														{testcases.input ? testcases.input : 'No Input'}
+													</code>
+												</div>
+												<div class="w-1/2 flex flex-col">
+													<p class="text-sm">
+														Output {index + 1}
+													</p>
+													<code
+														class={`mt-1 h-20 overflow-y-scroll whitespace-pre-wrap rounded-md bg-neutral-800 px-2 py-2 text-base text-gray-100 scrollable`}
+													>
+														{testcases.output ? testcases.output : 'No Output'}
+													</code>
+												</div>
 											</div>
 										</div>
-									</div>
-								{:else}
-									<p class="text-sm">There is no testcases</p>
-								{/if}
-							{/each}
+									{:else}
+										<p class="text-sm">There is no testcases</p>
+									{/if}
+								{/each}
+							{/if}
 						</div>
 					</div>
 				</div>
