@@ -47,7 +47,7 @@
 </script>
 
 {#if question?.title}
-	<section class="text-white px-4">
+	<section class="text-white px-4 pb-8">
 		<audio src="/Success.mp3" id="pass-sound" />
 		<audio src="/Success.mp3" id="success-sound" />
 		<div class="container mx-auto glass-lightgray p-8">
