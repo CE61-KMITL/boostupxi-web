@@ -177,7 +177,7 @@
 				{:else if result?.result}
 					<span class="bg-black bg-opacity-25 px-2 rounded-md">{result?.result}</span>
 				{:else}
-					<span class="px-2 text-sm underline">กดส่งคำตอบเพื่อรับผลลัพธ์</span>
+					<span class="px-2 text-sm underlinew">กดส่งคำตอบเพื่อรับผลลัพธ์</span>
 				{/if}
 			</h3>
 		</div>
