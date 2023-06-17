@@ -9,6 +9,7 @@
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 	import { onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
+	import Result from '$/components/Result.svelte';
 
 	let subscriptions: ((text: string) => void)[] = [];
 	let content: {
@@ -19,8 +20,9 @@
 	let divEl: HTMLDivElement;
 	let editor: Monaco.editor.IStandaloneCodeEditor;
 	let Monaco;
-	export let id: string;
 	let loadingResult: boolean = false;
+
+	export let id: string;
 	let loading: boolean = false;
 	let result: ISubmissionsResult = initialSubmissionData;
 
@@ -35,25 +37,21 @@
 		await compilerService.submitCode(text, id);
 		setTimeout(async () => {
 			const response = await questionService.getSubmission(id);
-			if (response && response.status) {
+			let sound;
+			if (response.status) {
 				toast.success('ยินดีด้วยน้องผ่านแล้ว เก่งมากๆๆ');
-				const sound = document.getElementById('pass-sound') as HTMLAudioElement;
+				sound = document.getElementById('pass-sound') as HTMLAudioElement;
 				sound.play();
-				submissionDataStore.set(response);
-				loadingResult = false;
-				loading = false;
-			} else if (response && !response.status) {
-				toast.error('ยังถูกไม่หมดน้า ลองใหม่ๆๆ');
-				const sound = document.getElementById('fail-sound') as HTMLAudioElement;
+			} else {
+				toast.error('ผิดนะน้อง ลองใหม่อีกครั้งนะ');
+				sound = document.getElementById('fail-sound') as HTMLAudioElement;
 				sound.play();
-				submissionDataStore.set(response);
-				loadingResult = false;
-				loading = false;
 			}
-			setTimeout(() => {
-				window.location.reload();
-			}, 1000);
-		}, 4000);
+			submissionDataStore.set(response);
+			loadingResult = false;
+			loading = false;
+			result = response;
+		}, 3000);
 	};
 
 	onMount(async () => {
@@ -169,6 +167,19 @@
 <div>
 	<audio src="/pass.mp3" id="pass-sound" />
 	<audio src="/fail.mp3" id="fail-sound" />
+	<div class="flex justify-between items-center mb-2">
+		<div class="inline-flex space-x-1">
+			<Result />
+			{#if loadingResult}
+				<h3 class="text-2xl font-bold">Loading...</h3>
+			{:else if result?.result !== undefined}
+				<h3 class="text-2xl rounded-xl uppercase">
+					Result: <span class="bg-black bg-opacity-25 px-2 rounded-md"> {result?.result}</span>
+				</h3>
+			{/if}
+		</div>
+	</div>
+
 	<div bind:this={divEl} class="w-full h-[40rem] rounded-lg overflow-hidden" />
 	<button
 		type="button"
