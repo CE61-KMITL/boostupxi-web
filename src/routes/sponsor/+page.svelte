@@ -7,43 +7,20 @@
 				Sponsored by
 			</h1>
 		</div>
-		<div class="py-2 lg:px-32 lg:pt-12 flex justify-center">
-			<div class="-m-1 flex flex-wrap md:-m-2 px-10">
-				<div class="flex w-1/3 flex-wrap">
-					<div class="w-full p-1 md:p-2">
-						<img
-							alt="gallery"
-							class="block h-40 w-50 rounded-lg object-cover object-center"
-							src="/lactasoy-icon.png"
-						/>
-					</div>
+
+		<div class="flex justify-center">
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+				<div>
+					<img class="h-40 max-w-full rounded-lg w-40" src="/lactasoy-icon.png" alt="" />
 				</div>
-				<div class="flex w-1/3 flex-wrap">
-					<div class="w-full p-1 md:p-2">
-						<img
-							alt="gallery"
-							class="block h-40 w-40 rounded-lg object-cover object-center"
-							src="/great-food.png"
-						/>
-					</div>
+				<div>
+					<img class="h-40 max-w-full rounded-lg" src="/born-to-dev-logo.png" alt="" />
 				</div>
-				<div class="flex w-1/3 flex-wrap">
-					<div class="w-full p-1 md:p-2">
-						<img
-							alt="gallery"
-							class="block h-40 w-40 rounded-lg object-cover object-center"
-							src="/born-to-dev-logo.png"
-						/>
-					</div>
+				<div>
+					<img class="h-40 max-w-full rounded-lg" src="/great-food.png" alt="" />
 				</div>
-				<div class="flex w-1/3 flex-wrap">
-					<div class="w-full p-1 md:p-2">
-						<img
-							alt="gallery"
-							class="block h-40 w-40 rounded-lg object-cover object-center"
-							src="/yuedpao-logo.png"
-						/>
-					</div>
+				<div>
+					<img class="h-40 max-w-full rounded-lg" src="/yuedpao-logo.png" alt="" />
 				</div>
 			</div>
 		</div>
