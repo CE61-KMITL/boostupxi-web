@@ -7,15 +7,8 @@
 	import { submissionDataStore } from '$/store/submission';
 	import { updateUserProfile, user } from '$/store/user';
 	import type * as Monaco from 'monaco-editor';
-	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import toast from 'svelte-french-toast';
-
-	let subscriptions: ((text: string) => void)[] = [];
-	let content: {
-		subscribe: (func: (text: string) => void) => () => void;
-		set: (val: string) => void;
-	};
 
 	let divEl: HTMLDivElement;
 	let editor: Monaco.editor.IStandaloneCodeEditor;
@@ -28,13 +21,15 @@
 
 	const handleSubmit = async (e: Event) => {
 		e.preventDefault();
+		if ($user?.role !== 'user') {
+			toast.error('คิดจะส่งหรอ ไม่ใช่น้องนะ');
+			return;
+		}
 		loading = true;
 		loadingResult = true;
 		const text = editor.getValue();
-		if ($user?.role !== 'user') {
-			toast.error('คิดจะส่งหรอ ไม่ใช่น้องนะ');
-		}
 		await compilerService.submitCode(text, id);
+
 		setTimeout(async () => {
 			const response = await questionService.getSubmission(id);
 			let sound;
@@ -56,12 +51,6 @@
 	};
 
 	onMount(async () => {
-		self.MonacoEnvironment = {
-			getWorker: function (_moduleId, label) {
-				return new editorWorker();
-			}
-		};
-
 		Monaco = await import('monaco-editor');
 		Monaco.languages.register({ id: 'c' });
 		Monaco.languages.setMonarchTokensProvider('c', {
@@ -85,83 +74,33 @@
 			}
 		});
 
-		Monaco.languages.setLanguageConfiguration('c', {
-			comments: {
-				lineComment: '//',
-				blockComment: ['/*', '*/']
-			},
-			brackets: [
-				['{', '}'],
-				['[', ']'],
-				['(', ')']
-			],
-			autoClosingPairs: [
-				{ open: '{', close: '}' },
-				{ open: '[', close: ']' },
-				{ open: '(', close: ')' },
-				{ open: '"', close: '"', notIn: ['string'] }
-			]
-		});
-
 		editor = Monaco.editor.create(divEl, {
 			value: result.source_code,
 			language: 'c',
 			theme: 'vs-dark',
-			lineNumbers: 'on',
-			automaticLayout: true,
-			suggestOnTriggerCharacters: true,
-			quickSuggestions: true,
-			wordBasedSuggestions: true,
-			ariaLabel: 'CE-BoostUp#XI',
-			selectOnLineNumbers: true,
+			automaticLayout: false,
+			fontSize: 20,
 			padding: {
-				top: 20,
+				top: 40,
 				bottom: 10
 			},
-			fontLigatures: true,
-			fontSize: 20,
-			fontWeight: 'normal',
-			lineHeight: 25,
-			letterSpacing: 0,
 			cursorStyle: 'line',
+			glyphMargin: true,
 			readOnly: false,
-			cursorBlinking: 'blink',
-			scrollbar: {
-				vertical: 'auto',
-				horizontal: 'auto'
-			},
+			renderLineHighlight: 'none',
+			roundedSelection: false,
+			selectOnLineNumbers: false,
 			minimap: {
 				enabled: false
 			}
 		});
 
-		editor.onDidChangeModelContent(() => {
-			const text = editor.getValue();
-			subscriptions.forEach((sub) => sub(text));
-		});
-
-		content = {
-			subscribe(func) {
-				subscriptions.push(func);
-				return () => {
-					subscriptions = subscriptions.filter((sub) => sub !== func);
-				};
-			},
-
-			set(val) {
-				editor.setValue(val);
-			}
-		};
-
 		result = await questionService.getSubmission(id);
-		content.set(
-			result?.source_code ||
-				`#include <stdio.h>\n\nint main() {\n\tprintf("Hello CE Boostupxi"); \n\n\treturn 0;\n}`
-		);
+		editor.setValue(result.source_code);
+	});
 
-		return () => {
-			editor.dispose();
-		};
+	onDestroy(() => {
+		editor.dispose();
 	});
 </script>
 
