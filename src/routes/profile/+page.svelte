@@ -76,7 +76,7 @@
 				</div>
 			</div>
 
-			<div class="text-center mt-20">
+			<div class="text-center mt-10">
 				<div class="py-2">
 					<h3 class="font-bold text-2xl mb-1">{$user.username}</h3>
 					<div class="inline-flex items-center">

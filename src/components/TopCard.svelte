@@ -23,8 +23,18 @@
 				</p>
 			</div>
 			<img
-				src={`/ceboostup-xi-logo.png`}
-				alt="john-doe"
+				src={group === 'ระฆังทอง'
+					? `/home/goldbell.png`
+					: group === 'ประถมบรรเทิงศิลป์'
+					? `/home/pratom.png`
+					: group === 'โปงลางสะออน'
+					? `/home/ponglang.png`
+					: group === 'เพชรสยาม'
+					? `/home/diamond.png`
+					: group === 'คณะระเบียบวาทะศิลป์'
+					? `/home/rabibe.png`
+					: `/home/newbro.png`}
+				alt="group"
 				class="absolute border-red border-4 p-1 rounded-full w-2/3 h-2/3 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
 			/>
 			<img
