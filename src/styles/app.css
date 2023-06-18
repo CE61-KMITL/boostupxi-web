@@ -48,8 +48,6 @@
 /* glass */
 .glass {
 	background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(18px);
 	border-radius: 20px;
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.37);
@@ -57,8 +55,6 @@
 
 .glass-gray {
 	background: rgba(47, 47, 47, 0.63);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
 	border-radius: 15px;
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.37);
@@ -66,8 +62,6 @@
 
 .glass-lightgray {
 	background: rgba(26, 26, 26, 0.23);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
 	border-radius: 25px;
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.37);
@@ -75,8 +69,6 @@
 
 .glass-dark {
 	background: rgba(26, 26, 26, 0.63);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
 	border-radius: 25px;
 	box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.37);
 }
