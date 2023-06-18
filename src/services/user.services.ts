@@ -33,7 +33,6 @@ export const userService = {
 	},
 	getUserProfile: async () => {
 		const response = await axiosInstance.get('/users/profile');
-		console.log(response.status);
 		if(response.status === 401) {
 			Cookies.remove('token');
 			window.location.href = '/';
